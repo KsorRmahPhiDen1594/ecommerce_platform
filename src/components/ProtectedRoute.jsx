@@ -1,24 +1,41 @@
 import React from 'react';
-    import { Navigate, useLocation } from 'react-router-dom';
-    import { useAuth } from '@/contexts/AuthContext';
+import { Navigate, useLocation } from 'react-router-dom';
+import { useAuth } from '@/contexts/AuthContext';
 
-    const ProtectedRoute = ({ children, adminOnly = false }) => {
-      const { currentUser, loading } = useAuth();
-      const location = useLocation();
+const ProtectedRoute = ({ children, adminOnly = false }) => {
+  const { currentUser, loading } = useAuth();
+  const location = useLocation();
 
-      if (loading) {
-        return <div className="flex justify-center items-center h-screen text-primary text-xl">Đang tải...</div>;
-      }
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen text-primary text-xl">
+        Đang tải...
+      </div>
+    );
+  }
 
-      if (!currentUser) {
-        return <Navigate to="/login" state={{ from: location }} replace />;
-      }
+  if (!currentUser) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
 
-      if (adminOnly && (!currentUser.role || !['admin', 'superadmin'].includes(currentUser.role))) {
-        return <Navigate to="/" replace />; 
-      }
-      
-      return children;
-    };
+  // ✅ Kiểm tra role đúng cách
+  const roles = currentUser.roles?.map((r) =>
+    typeof r === "string" ? r.toLowerCase() : r.name?.toLowerCase()
+  );
 
-    export default ProtectedRoute;
+  const isAdmin = roles?.some((r) =>
+    ["admin", "superadmin", "role_admin", "role_superadmin"].includes(r.toLowerCase())
+  );
+
+  if (adminOnly && !isAdmin) {
+    return <Navigate to="/" replace />;
+  }
+
+
+  console.log("✅ currentUser:", currentUser);
+
+
+  return children;
+};
+
+export default ProtectedRoute;
