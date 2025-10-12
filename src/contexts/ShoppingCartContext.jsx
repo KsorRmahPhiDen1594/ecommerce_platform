@@ -29,26 +29,57 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
           localStorage.setItem(`cart_${currentUser.id}`, JSON.stringify(cartItems));
         }
       }, [cartItems, currentUser]);
+    const addToCart = (product, quantity = 1, variant = null) => {
+  if (!currentUser) {
+    toast({
+      variant: "destructive",
+      title: "Vui lòng đăng nhập",
+      description: "Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng."
+    });
+    return;
+  }
 
-      const addToCart = (product, quantity = 1, variant = null) => {
-        if (!currentUser) {
-          toast({ variant: "destructive", title: "Vui lòng đăng nhập", description: "Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng." });
-          return;
-        }
-        setCartItems(prevItems => {
-          const existingItem = prevItems.find(item => item.id === product.id && JSON.stringify(item.variant) === JSON.stringify(variant));
-          if (existingItem) {
-            return prevItems.map(item =>
-              item.id === product.id && JSON.stringify(item.variant) === JSON.stringify(variant)
-                ? { ...item, quantity: item.quantity + quantity }
-                : item
-            );
-          } else {
-            return [...prevItems, { ...product, quantity, variant }];
-          }
-        });
-        toast({ title: "Thêm vào giỏ hàng thành công!", description: `${product.name} đã được thêm vào giỏ hàng.` });
-      };
+  const priceNumber = typeof product.price === "string"
+    ? parseInt(product.price.replace(/[.₫]/g, ''))
+    : product.price;
+
+  // URL trực tiếp
+  const imageUrl = product.imageUrl 
+    ? `http://localhost:8080/images/${product.imageUrl}`
+    : "https://via.placeholder.com/150"; // fallback
+
+  const newItem = { 
+    ...product,
+    price: priceNumber,
+    quantity,
+    variant: variant ? { ...variant } : null,
+    image: imageUrl,
+    alt: product.name
+  };
+
+  setCartItems(prevItems => {
+    const existingItem = prevItems.find(
+      item => item.id === product.id && JSON.stringify(item.variant) === JSON.stringify(variant)
+    );
+    if (existingItem) {
+      return prevItems.map(item =>
+        item.id === product.id && JSON.stringify(item.variant) === JSON.stringify(variant)
+          ? { ...item, quantity: item.quantity + quantity }
+          : item
+      );
+    } else {
+      return [...prevItems, newItem];
+    }
+  });
+
+  toast({
+    title: "Thêm vào giỏ hàng thành công!",
+    description: `${product.name} đã được thêm vào giỏ hàng.`
+  });
+};
+
+
+
 
       const removeFromCart = (productId, variant = null) => {
         setCartItems(prevItems => prevItems.filter(item => !(item.id === productId && JSON.stringify(item.variant) === JSON.stringify(variant))));
@@ -79,10 +110,8 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 
       const cartCount = cartItems.reduce((count, item) => count + item.quantity, 0);
       
-      const subtotal = cartItems.reduce((sum, item) => {
-        const price = parseFloat(item.price.replace(/[.₫]/g, ''));
-        return sum + price * item.quantity;
-      }, 0);
+      const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
 
 
       return (
