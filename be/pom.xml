@@ -46,12 +46,12 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.18.34</version>  // ← Update mới nhất (2025)
+			<version>1.18.34</version> 
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>  // ← Thêm nếu cần @Valid in controller
+			<artifactId>spring-boot-starter-validation</artifactId> 
 		</dependency>
 
 		<dependency>

@@ -106,17 +106,17 @@ import React, { useState, useEffect } from 'react';
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex justify-between items-center"
+            className="flex items-center justify-between"
           >
-            <h1 className="text-3xl font-bold flex items-center"><Users className="mr-3 h-8 w-8 text-primary"/>Quản lý Người dùng</h1>
-            <Button onClick={() => setIsAddUserModalOpen(true)} className="gradient-shopee text-primary-foreground">
-              <Plus className="mr-2 h-5 w-5" /> Thêm người dùng mới
+            <h1 className="flex items-center text-3xl font-bold"><Users className="w-8 h-8 mr-3 text-primary"/>Quản lý Người dùng</h1>
+            <Button onClick={() => setIsAddUserModalOpen(true)} className="gradient-highlands text-primary-foreground">
+              <Plus className="w-5 h-5 mr-2" /> Thêm người dùng mới
             </Button>
           </motion.div>
 
           <Card className="shadow-lg">
             <CardHeader className="p-4 border-b">
-              <div className="flex flex-col md:flex-row justify-between md:items-center gap-3">
+              <div className="flex flex-col justify-between gap-3 md:flex-row md:items-center">
                 <div className="relative w-full md:max-w-sm">
                     <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input 
@@ -168,7 +168,7 @@ import React, { useState, useEffect } from 'react';
                   {filteredUsers.map(user => (
                     <TableRow key={user.id} className="hover:bg-muted/50">
                       <TableCell>
-                         <img  src={`https://api.dicebear.com/7.x/initials/svg?seed=${user.name}&backgroundColor=${user.role === 'admin' || user.role === 'superadmin' ? 'ff7f50' : '60a5fa'}&radius=50`} alt="avatar" className="h-10 w-10 rounded-full border" />
+                         <img  src={`https://api.dicebear.com/7.x/initials/svg?seed=${user.name}&backgroundColor=${user.role === 'admin' || user.role === 'superadmin' ? 'ff7f50' : '60a5fa'}&radius=50`} alt="avatar" className="w-10 h-10 border rounded-full" />
                       </TableCell>
                       <TableCell className="font-medium">{user.name}</TableCell>
                       <TableCell>{user.email}</TableCell>
@@ -188,22 +188,22 @@ import React, { useState, useEffect } from 'react';
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" className="h-8 w-8 p-0">
+                            <Button variant="ghost" className="w-8 h-8 p-0">
                               <span className="sr-only">Mở menu</span>
-                              <MoreHorizontal className="h-4 w-4" />
+                              <MoreHorizontal className="w-4 h-4" />
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Tùy chọn</DropdownMenuLabel>
-                            <DropdownMenuItem onClick={() => openEditModal(user)}><Edit className="mr-2 h-4 w-4"/>Sửa thông tin</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => openEditModal(user)}><Edit className="w-4 h-4 mr-2"/>Sửa thông tin</DropdownMenuItem>
                             <DropdownMenuItem onClick={() => toggleUserStatus(user.id)}>
-                              {user.status === 'active' ? <Lock className="mr-2 h-4 w-4"/> : <Unlock className="mr-2 h-4 w-4"/>}
+                              {user.status === 'active' ? <Lock className="w-4 h-4 mr-2"/> : <Unlock className="w-4 h-4 mr-2"/>}
                               {user.status === 'active' ? 'Khóa tài khoản' : 'Mở khóa'}
                             </DropdownMenuItem>
-                            <DropdownMenuItem><MailWarning className="mr-2 h-4 w-4"/>Gửi cảnh báo</DropdownMenuItem>
+                            <DropdownMenuItem><MailWarning className="w-4 h-4 mr-2"/>Gửi cảnh báo</DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem onClick={() => deleteUser(user.id)} className="text-red-600 focus:text-red-600 focus:bg-red-50">
-                              <Trash2 className="mr-2 h-4 w-4"/>Xóa người dùng
+                              <Trash2 className="w-4 h-4 mr-2"/>Xóa người dùng
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -230,19 +230,19 @@ import React, { useState, useEffect } from 'react';
                 <DialogDescription>Điền thông tin chi tiết để tạo tài khoản người dùng mới.</DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
+                <div className="grid items-center grid-cols-4 gap-4">
                   <Label htmlFor="new-name" className="text-right">Tên</Label>
                   <Input id="new-name" value={newUserData.name} onChange={(e) => setNewUserData({...newUserData, name: e.target.value})} className="col-span-3" />
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
+                <div className="grid items-center grid-cols-4 gap-4">
                   <Label htmlFor="new-email" className="text-right">Email</Label>
                   <Input id="new-email" type="email" value={newUserData.email} onChange={(e) => setNewUserData({...newUserData, email: e.target.value})} className="col-span-3" />
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
+                <div className="grid items-center grid-cols-4 gap-4">
                   <Label htmlFor="new-password" className="text-right">Mật khẩu</Label>
                   <Input id="new-password" type="password" value={newUserData.password} onChange={(e) => setNewUserData({...newUserData, password: e.target.value})} className="col-span-3" />
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
+                <div className="grid items-center grid-cols-4 gap-4">
                   <Label htmlFor="new-role" className="text-right">Vai trò</Label>
                   <Select value={newUserData.role} onValueChange={(value) => setNewUserData({...newUserData, role: value})}>
                     <SelectTrigger className="col-span-3">
@@ -258,7 +258,7 @@ import React, { useState, useEffect } from 'react';
               </div>
               <DialogFooter>
                 <Button variant="outline" onClick={() => setIsAddUserModalOpen(false)}>Hủy</Button>
-                <Button onClick={handleAddUser} className="gradient-shopee text-primary-foreground">Thêm người dùng</Button>
+                <Button onClick={handleAddUser} className="gradient-highlands text-primary-foreground">Thêm người dùng</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>
@@ -272,19 +272,19 @@ import React, { useState, useEffect } from 'react';
                     <DialogDescription>Cập nhật thông tin cho người dùng.</DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4">
-                    <div className="grid grid-cols-4 items-center gap-4">
+                    <div className="grid items-center grid-cols-4 gap-4">
                     <Label htmlFor="edit-name" className="text-right">Tên</Label>
                     <Input id="edit-name" value={newUserData.name} onChange={(e) => setNewUserData({...newUserData, name: e.target.value})} className="col-span-3" />
                     </div>
-                    <div className="grid grid-cols-4 items-center gap-4">
+                    <div className="grid items-center grid-cols-4 gap-4">
                     <Label htmlFor="edit-email" className="text-right">Email</Label>
                     <Input id="edit-email" type="email" value={newUserData.email} onChange={(e) => setNewUserData({...newUserData, email: e.target.value})} className="col-span-3" />
                     </div>
-                    <div className="grid grid-cols-4 items-center gap-4">
+                    <div className="grid items-center grid-cols-4 gap-4">
                     <Label htmlFor="edit-password" className="text-right">Mật khẩu mới</Label>
                     <Input id="edit-password" type="password" placeholder="Để trống nếu không đổi" value={newUserData.password} onChange={(e) => setNewUserData({...newUserData, password: e.target.value})} className="col-span-3" />
                     </div>
-                    <div className="grid grid-cols-4 items-center gap-4">
+                    <div className="grid items-center grid-cols-4 gap-4">
                     <Label htmlFor="edit-role" className="text-right">Vai trò</Label>
                     <Select value={newUserData.role} onValueChange={(value) => setNewUserData({...newUserData, role: value})}>
                         <SelectTrigger className="col-span-3">
@@ -300,7 +300,7 @@ import React, { useState, useEffect } from 'react';
                 </div>
                 <DialogFooter>
                     <Button variant="outline" onClick={() => { setIsEditUserModalOpen(false); setCurrentUserToEdit(null); }}>Hủy</Button>
-                    <Button onClick={handleEditUser} className="gradient-shopee text-primary-foreground">Lưu thay đổi</Button>
+                    <Button onClick={handleEditUser} className="gradient-highlands text-primary-foreground">Lưu thay đổi</Button>
                 </DialogFooter>
                 </DialogContent>
             </Dialog>

@@ -117,17 +117,17 @@ import React, { useState, useEffect } from 'react';
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex justify-between items-center"
+            className="flex items-center justify-between"
           >
-            <h1 className="text-3xl font-bold flex items-center"><Package className="mr-3 h-8 w-8 text-primary"/>Quản lý Sản phẩm</h1>
-            <Button onClick={() => openModal()} className="gradient-shopee text-primary-foreground">
-              <Plus className="mr-2 h-5 w-5" /> Thêm sản phẩm mới
+            <h1 className="flex items-center text-3xl font-bold"><Package className="w-8 h-8 mr-3 text-primary"/>Quản lý Sản phẩm</h1>
+            <Button onClick={() => openModal()} className="gradient-highlands text-primary-foreground">
+              <Plus className="w-5 h-5 mr-2" /> Thêm sản phẩm mới
             </Button>
           </motion.div>
 
           <Card className="shadow-lg">
             <CardHeader className="p-4 border-b">
-              <div className="flex flex-col md:flex-row justify-between md:items-center gap-3">
+              <div className="flex flex-col justify-between gap-3 md:flex-row md:items-center">
                 <div className="relative w-full md:max-w-sm">
                     <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input 
@@ -180,7 +180,7 @@ import React, { useState, useEffect } from 'react';
                   {filteredProducts.map(product => (
                     <TableRow key={product.id} className="hover:bg-muted/50">
                       <TableCell>
-                         <img  className="h-10 w-10 rounded object-cover border" alt={product.name} src="https://images.unsplash.com/photo-1588099768531-a72d4a198538?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" />
+                         <img  className="object-cover w-10 h-10 border rounded" alt={product.name} src="https://images.unsplash.com/photo-1588099768531-a72d4a198538?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80" />
                       </TableCell>
                       <TableCell className="font-medium max-w-[200px] truncate">{product.name}</TableCell>
                       <TableCell>{product.category}</TableCell>
@@ -201,21 +201,21 @@ import React, { useState, useEffect } from 'react';
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" className="h-8 w-8 p-0">
-                              <MoreHorizontal className="h-4 w-4" />
+                            <Button variant="ghost" className="w-8 h-8 p-0">
+                              <MoreHorizontal className="w-4 h-4" />
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Tùy chọn</DropdownMenuLabel>
-                            <DropdownMenuItem onClick={() => openModal(product)}><Edit className="mr-2 h-4 w-4"/>Sửa sản phẩm</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => openModal(product)}><Edit className="w-4 h-4 mr-2"/>Sửa sản phẩm</DropdownMenuItem>
                             <DropdownMenuItem onClick={() => toggleProductStatus(product.id)}>
-                              {product.status === 'active' ? <EyeOff className="mr-2 h-4 w-4"/> : <Eye className="mr-2 h-4 w-4"/>}
+                              {product.status === 'active' ? <EyeOff className="w-4 h-4 mr-2"/> : <Eye className="w-4 h-4 mr-2"/>}
                               {product.status === 'active' ? 'Ẩn sản phẩm' : 'Hiển thị'}
                             </DropdownMenuItem>
-                            {product.status !== 'violation' && <DropdownMenuItem><AlertCircle className="mr-2 h-4 w-4"/>Báo cáo vi phạm</DropdownMenuItem>}
+                            {product.status !== 'violation' && <DropdownMenuItem><AlertCircle className="w-4 h-4 mr-2"/>Báo cáo vi phạm</DropdownMenuItem>}
                             <DropdownMenuSeparator />
                             <DropdownMenuItem onClick={() => deleteProduct(product.id)} className="text-red-600 focus:text-red-600 focus:bg-red-50">
-                              <Trash2 className="mr-2 h-4 w-4"/>Xóa sản phẩm
+                              <Trash2 className="w-4 h-4 mr-2"/>Xóa sản phẩm
                             </DropdownMenuItem>
                           </DropdownMenuContent>
                         </DropdownMenu>
@@ -242,11 +242,11 @@ import React, { useState, useEffect } from 'react';
                     </DialogDescription>
                 </DialogHeader>
                 <div className="grid gap-4 py-4 max-h-[60vh] overflow-y-auto pr-2">
-                    <div className="grid grid-cols-4 items-center gap-4">
+                    <div className="grid items-center grid-cols-4 gap-4">
                         <Label htmlFor="prod-name" className="text-right">Tên SP</Label>
                         <Input id="prod-name" name="name" value={productFormData.name} onChange={handleInputChange} className="col-span-3" />
                     </div>
-                    <div className="grid grid-cols-4 items-center gap-4">
+                    <div className="grid items-center grid-cols-4 gap-4">
                         <Label htmlFor="prod-category" className="text-right">Danh mục</Label>
                         <Select value={productFormData.category} onValueChange={(value) => handleSelectChange('category', value)}>
                             <SelectTrigger className="col-span-3">
@@ -258,26 +258,26 @@ import React, { useState, useEffect } from 'react';
                             </SelectContent>
                         </Select>
                     </div>
-                    <div className="grid grid-cols-4 items-center gap-4">
+                    <div className="grid items-center grid-cols-4 gap-4">
                         <Label htmlFor="prod-price" className="text-right">Giá (VNĐ)</Label>
                         <Input id="prod-price" name="price" type="number" value={productFormData.price} onChange={handleInputChange} className="col-span-3" />
                     </div>
-                    <div className="grid grid-cols-4 items-center gap-4">
+                    <div className="grid items-center grid-cols-4 gap-4">
                         <Label htmlFor="prod-stock" className="text-right">Tồn kho</Label>
                         <Input id="prod-stock" name="stock" type="number" value={productFormData.stock} onChange={handleInputChange} className="col-span-3" />
                     </div>
-                    <div className="grid grid-cols-4 items-start gap-4">
-                        <Label htmlFor="prod-description" className="text-right pt-2">Mô tả</Label>
+                    <div className="grid items-start grid-cols-4 gap-4">
+                        <Label htmlFor="prod-description" className="pt-2 text-right">Mô tả</Label>
                         <Textarea id="prod-description" name="description" value={productFormData.description} onChange={handleInputChange} className="col-span-3 min-h-[100px]" />
                     </div>
-                     <div className="grid grid-cols-4 items-center gap-4">
+                     <div className="grid items-center grid-cols-4 gap-4">
                         <Label htmlFor="prod-image" className="text-right">Ảnh (placeholder)</Label>
                         <Input id="prod-image" name="image_placeholder" value={productFormData.image_placeholder} onChange={handleInputChange} className="col-span-3" placeholder="Mô tả ảnh hoặc URL" />
                     </div>
                 </div>
                 <DialogFooter>
                     <Button variant="outline" onClick={() => setIsAddEditModalOpen(false)}>Hủy</Button>
-                    <Button onClick={handleSubmitProduct} className="gradient-shopee text-primary-foreground">
+                    <Button onClick={handleSubmitProduct} className="gradient-highlands text-primary-foreground">
                         {currentProduct ? 'Lưu thay đổi' : 'Thêm sản phẩm'}
                     </Button>
                 </DialogFooter>

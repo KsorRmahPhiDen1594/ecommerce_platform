@@ -84,14 +84,14 @@ import React, { useState, useEffect } from 'react';
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="flex justify-between items-center"
+            className="flex items-center justify-between"
           >
-            <h1 className="text-3xl font-bold flex items-center"><ShoppingCart className="mr-3 h-8 w-8 text-primary"/>Quản lý Đơn hàng</h1>
+            <h1 className="flex items-center text-3xl font-bold"><ShoppingCart className="w-8 h-8 mr-3 text-primary"/>Quản lý Đơn hàng</h1>
           </motion.div>
 
           <Card className="shadow-lg">
             <CardHeader className="p-4 border-b">
-              <div className="flex flex-col md:flex-row justify-between md:items-center gap-3">
+              <div className="flex flex-col justify-between gap-3 md:flex-row md:items-center">
                 <div className="relative w-full md:max-w-sm">
                     <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                     <Input 
@@ -128,7 +128,7 @@ import React, { useState, useEffect } from 'react';
                 <TableBody>
                   {filteredOrders.map(order => (
                     <TableRow key={order.id} className="hover:bg-muted/50">
-                      <TableCell className="font-medium text-primary hover:underline cursor-pointer" onClick={() => openDetailModal(order)}>{order.id}</TableCell>
+                      <TableCell className="font-medium cursor-pointer text-primary hover:underline" onClick={() => openDetailModal(order)}>{order.id}</TableCell>
                       <TableCell>{order.customerName}</TableCell>
                       <TableCell>{order.date}</TableCell>
                       <TableCell>{parseInt(order.totalAmount).toLocaleString()}₫</TableCell>
@@ -149,16 +149,16 @@ import React, { useState, useEffect } from 'react';
                       <TableCell className="text-right">
                         <DropdownMenu>
                           <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" className="h-8 w-8 p-0">
-                              <MoreHorizontal className="h-4 w-4" />
+                            <Button variant="ghost" className="w-8 h-8 p-0">
+                              <MoreHorizontal className="w-4 h-4" />
                             </Button>
                           </DropdownMenuTrigger>
                           <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Tùy chọn</DropdownMenuLabel>
-                            <DropdownMenuItem onClick={() => openDetailModal(order)}><Eye className="mr-2 h-4 w-4"/>Xem chi tiết</DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => openEditStatusModal(order)}><FilePenLine className="mr-2 h-4 w-4"/>Cập nhật trạng thái</DropdownMenuItem>
-                            {order.status === "Đang xử lý" && <DropdownMenuItem className="text-red-600 focus:text-red-600 focus:bg-red-50"><XCircle className="mr-2 h-4 w-4"/>Hủy đơn hàng</DropdownMenuItem>}
-                            {order.status === "Đã giao" && <DropdownMenuItem><RefreshCcw className="mr-2 h-4 w-4"/>Xử lý hoàn tiền</DropdownMenuItem>}
+                            <DropdownMenuItem onClick={() => openDetailModal(order)}><Eye className="w-4 h-4 mr-2"/>Xem chi tiết</DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => openEditStatusModal(order)}><FilePenLine className="w-4 h-4 mr-2"/>Cập nhật trạng thái</DropdownMenuItem>
+                            {order.status === "Đang xử lý" && <DropdownMenuItem className="text-red-600 focus:text-red-600 focus:bg-red-50"><XCircle className="w-4 h-4 mr-2"/>Hủy đơn hàng</DropdownMenuItem>}
+                            {order.status === "Đã giao" && <DropdownMenuItem><RefreshCcw className="w-4 h-4 mr-2"/>Xử lý hoàn tiền</DropdownMenuItem>}
                           </DropdownMenuContent>
                         </DropdownMenu>
                       </TableCell>
@@ -183,7 +183,7 @@ import React, { useState, useEffect } from 'react';
                         <DialogDescription>Thông tin chi tiết về đơn hàng và sản phẩm.</DialogDescription>
                     </DialogHeader>
                     <div className="py-4 max-h-[60vh] overflow-y-auto pr-2 space-y-4">
-                        <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                        <div className="grid grid-cols-2 text-sm gap-x-4 gap-y-2">
                             <p><strong className="text-muted-foreground">Khách hàng:</strong> {selectedOrder.customerName}</p>
                             <p><strong className="text-muted-foreground">Ngày đặt:</strong> {selectedOrder.date}</p>
                             <p><strong className="text-muted-foreground">Tổng tiền:</strong> <span className="font-bold text-primary">{parseInt(selectedOrder.totalAmount).toLocaleString()}₫</span></p>
@@ -192,10 +192,10 @@ import React, { useState, useEffect } from 'react';
                             <p className="col-span-2"><strong className="text-muted-foreground">Trạng thái:</strong> <Badge>{selectedOrder.status}</Badge></p>
                         </div>
                         <div>
-                            <h4 className="font-semibold mb-2 text-md">Sản phẩm trong đơn:</h4>
+                            <h4 className="mb-2 font-semibold text-md">Sản phẩm trong đơn:</h4>
                             <ul className="space-y-2">
                                 {selectedOrder.items.map((item, index) => (
-                                    <li key={index} className="flex justify-between items-center p-2 bg-muted/50 dark:bg-slate-800/50 rounded-md text-sm">
+                                    <li key={index} className="flex items-center justify-between p-2 text-sm rounded-md bg-muted/50 dark:bg-slate-800/50">
                                         <div>
                                             <p className="font-medium">{item.name}</p>
                                             <p className="text-xs text-muted-foreground">SL: {item.quantity}</p>
@@ -221,7 +221,7 @@ import React, { useState, useEffect } from 'react';
                         <DialogDescription>Đơn hàng: {selectedOrder.id}</DialogDescription>
                     </DialogHeader>
                     <div className="py-4">
-                        <Label htmlFor="order-status" className="mb-2 block">Trạng thái mới</Label>
+                        <Label htmlFor="order-status" className="block mb-2">Trạng thái mới</Label>
                         <Select value={newStatus} onValueChange={setNewStatus}>
                             <SelectTrigger id="order-status">
                                 <SelectValue placeholder="Chọn trạng thái" />
@@ -233,7 +233,7 @@ import React, { useState, useEffect } from 'react';
                     </div>
                     <DialogFooter>
                         <Button variant="outline" onClick={() => setIsEditStatusModalOpen(false)}>Hủy</Button>
-                        <Button onClick={handleUpdateStatus} className="gradient-shopee text-primary-foreground">Lưu thay đổi</Button>
+                        <Button onClick={handleUpdateStatus} className="gradient-highlands text-primary-foreground">Lưu thay đổi</Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>

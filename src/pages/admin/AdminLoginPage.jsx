@@ -37,7 +37,7 @@ import React, { useState } from 'react';
       };
 
       return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-800 via-slate-900 to-black p-4">
+        <div className="flex items-center justify-center min-h-screen p-4 bg-gradient-to-br from-slate-800 via-slate-900 to-black">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -45,9 +45,9 @@ import React, { useState } from 'react';
             className="w-full max-w-md"
           >
             <Card className="shadow-2xl bg-slate-800/70 border-primary/30 backdrop-blur-md text-slate-100">
-              <CardHeader className="text-center p-6">
-                <Link to="/" className="flex items-center justify-center mb-4 text-3xl font-bold gradient-shopee bg-clip-text text-transparent">
-                  <Building2 className="h-8 w-8 mr-2 text-primary" />
+              <CardHeader className="p-6 text-center">
+                <Link to="/" className="flex items-center justify-center mb-4 text-3xl font-bold text-transparent gradient-highlands bg-clip-text">
+                  <Building2 className="w-8 h-8 mr-2 text-primary" />
                   ShopeeCharm Admin
                 </Link>
                 <CardTitle className="text-2xl font-semibold text-slate-50">Đăng Nhập Quản Trị</CardTitle>
@@ -58,7 +58,7 @@ import React, { useState } from 'react';
                   <div className="space-y-1.5">
                     <Label htmlFor="admin-email" className="text-slate-300">Email</Label>
                     <div className="relative">
-                      <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+                      <Mail className="absolute w-4 h-4 -translate-y-1/2 left-3 top-1/2 text-slate-500" />
                       <Input 
                         id="admin-email" 
                         type="email" 
@@ -73,7 +73,7 @@ import React, { useState } from 'react';
                   <div className="space-y-1.5">
                     <Label htmlFor="admin-password" className="text-slate-300">Mật khẩu</Label>
                     <div className="relative">
-                      <KeyRound className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+                      <KeyRound className="absolute w-4 h-4 -translate-y-1/2 left-3 top-1/2 text-slate-500" />
                       <Input 
                         id="admin-password" 
                         type="password" 
@@ -88,7 +88,7 @@ import React, { useState } from 'react';
                   <div className="space-y-1.5">
                     <Label htmlFor="admin-otp" className="text-slate-300">Mã OTP (Nếu có)</Label>
                      <div className="relative">
-                      <ShieldAlert className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+                      <ShieldAlert className="absolute w-4 h-4 -translate-y-1/2 left-3 top-1/2 text-slate-500" />
                       <Input 
                         id="admin-otp" 
                         type="text" 
@@ -99,13 +99,13 @@ import React, { useState } from 'react';
                       />
                     </div>
                   </div>
-                  <Button type="submit" className="w-full gradient-shopee text-primary-foreground text-md py-3" disabled={loading}>
-                    {loading ? 'Đang xác thực...' : <><LogIn className="mr-2 h-5 w-5" /> Đăng Nhập</>}
+                  <Button type="submit" className="w-full py-3 gradient-highlands text-primary-foreground text-md" disabled={loading}>
+                    {loading ? 'Đang xác thực...' : <><LogIn className="w-5 h-5 mr-2" /> Đăng Nhập</>}
                   </Button>
                 </form>
               </CardContent>
-              <CardFooter className="text-center text-xs text-slate-500 p-6 border-t border-slate-700">
-                Quên mật khẩu? <Link to="/admin/forgot-password" className="font-semibold text-primary hover:underline ml-1">Yêu cầu hỗ trợ</Link>
+              <CardFooter className="p-6 text-xs text-center border-t text-slate-500 border-slate-700">
+                Quên mật khẩu? <Link to="/admin/forgot-password" className="ml-1 font-semibold text-primary hover:underline">Yêu cầu hỗ trợ</Link>
               </CardFooter>
             </Card>
           </motion.div>

@@ -40,15 +40,15 @@ import React from 'react';
 
     const HelpPage = () => {
       return (
-        <div className="container mx-auto py-8">
+        <div className="container py-8 mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-10"
+            className="mb-10 text-center"
           >
-            <LifeBuoy className="mx-auto h-16 w-16 text-primary mb-4" />
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">Trung Tâm Trợ Giúp ShopeeCharm</h1>
+            <LifeBuoy className="w-16 h-16 mx-auto mb-4 text-primary" />
+            <h1 className="mb-2 text-3xl font-bold md:text-4xl">Trung Tâm Trợ Giúp ShopeeCharm</h1>
             <p className="text-lg text-muted-foreground">Chúng tôi ở đây để hỗ trợ bạn!</p>
           </motion.div>
 
@@ -56,10 +56,10 @@ import React from 'react';
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="max-w-2xl mx-auto mb-10 relative"
+            className="relative max-w-2xl mx-auto mb-10"
           >
-            <Input type="search" placeholder="Tìm kiếm câu hỏi hoặc vấn đề của bạn..." className="w-full pl-10 pr-4 py-3 text-md rounded-full shadow-md" />
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+            <Input type="search" placeholder="Tìm kiếm câu hỏi hoặc vấn đề của bạn..." className="w-full py-3 pl-10 pr-4 rounded-full shadow-md text-md" />
+            <Search className="absolute w-5 h-5 -translate-y-1/2 left-4 top-1/2 text-muted-foreground" />
           </motion.div>
 
           <motion.div
@@ -68,17 +68,17 @@ import React from 'react';
             transition={{ delay: 0.4, duration: 0.5 }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-2xl font-semibold mb-6 text-center md:text-left">Câu hỏi thường gặp (FAQs)</h2>
+            <h2 className="mb-6 text-2xl font-semibold text-center md:text-left">Câu hỏi thường gặp (FAQs)</h2>
             <Accordion type="single" collapsible className="w-full space-y-3">
               {faqData.map((faq) => (
-                <AccordionItem key={faq.id} value={faq.id} className="bg-card dark:bg-slate-800 rounded-lg shadow hover:shadow-md transition-shadow border dark:border-slate-700">
+                <AccordionItem key={faq.id} value={faq.id} className="transition-shadow border rounded-lg shadow bg-card dark:bg-slate-800 hover:shadow-md dark:border-slate-700">
                   <AccordionTrigger className="p-4 md:p-5 text-md hover:no-underline">
                     <div className="flex items-center">
-                      <faq.icon className="h-5 w-5 mr-3 text-primary" />
+                      <faq.icon className="w-5 h-5 mr-3 text-primary" />
                       {faq.question}
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="p-4 md:p-5 pt-0 text-muted-foreground text-sm leading-relaxed">
+                  <AccordionContent className="p-4 pt-0 text-sm leading-relaxed md:p-5 text-muted-foreground">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -90,12 +90,12 @@ import React from 'react';
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
-            className="text-center mt-12"
+            className="mt-12 text-center"
           >
-            <h3 className="text-xl font-semibold mb-3">Không tìm thấy câu trả lời?</h3>
-            <p className="text-muted-foreground mb-4">Đừng ngần ngại liên hệ với đội ngũ hỗ trợ của chúng tôi.</p>
-            <Button size="lg" className="gradient-shopee text-primary-foreground">
-              <MessageSquare className="mr-2 h-5 w-5" /> Liên Hệ Hỗ Trợ
+            <h3 className="mb-3 text-xl font-semibold">Không tìm thấy câu trả lời?</h3>
+            <p className="mb-4 text-muted-foreground">Đừng ngần ngại liên hệ với đội ngũ hỗ trợ của chúng tôi.</p>
+            <Button size="lg" className="gradient-highlands text-primary-foreground">
+              <MessageSquare className="w-5 h-5 mr-2" /> Liên Hệ Hỗ Trợ
             </Button>
           </motion.div>
         </div>
