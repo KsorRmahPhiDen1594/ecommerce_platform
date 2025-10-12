@@ -69,13 +69,13 @@ import React, { useState } from 'react';
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="container mx-auto py-10 text-center"
+            className="container py-10 mx-auto text-center"
           >
-            <CheckCircle className="mx-auto h-24 w-24 text-green-500 mb-6" />
-            <h1 className="text-3xl font-bold mb-4">Đặt hàng thành công!</h1>
-            <p className="text-muted-foreground mb-6">Cảm ơn bạn đã tin tưởng và mua sắm tại ShopeeCharm. Đơn hàng của bạn đang được xử lý.</p>
+            <CheckCircle className="w-24 h-24 mx-auto mb-6 text-green-500" />
+            <h1 className="mb-4 text-3xl font-bold">Đặt hàng thành công!</h1>
+            <p className="mb-6 text-muted-foreground">Cảm ơn bạn đã tin tưởng và mua sắm tại ShopeeCharm. Đơn hàng của bạn đang được xử lý.</p>
             <div className="space-x-4">
-              <Button asChild className="gradient-shopee text-primary-foreground">
+              <Button asChild className="gradient-highlands text-primary-foreground">
                 <Link to="/">Tiếp tục mua sắm</Link>
               </Button>
               <Button variant="outline" asChild>
@@ -92,31 +92,31 @@ import React, { useState } from 'react';
           <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="flex items-center justify-between bg-card dark:bg-slate-800 shadow-sm rounded-lg p-4 md:p-6 mb-6"
+            className="flex items-center justify-between p-4 mb-6 rounded-lg shadow-sm bg-card dark:bg-slate-800 md:p-6"
           >
-            <h1 className="text-2xl md:text-3xl font-bold flex items-center">
+            <h1 className="flex items-center text-2xl font-bold md:text-3xl">
               <CreditCard className="mr-3 h-7 w-7 text-primary" /> Thanh Toán Đơn Hàng
             </h1>
             <Button variant="outline" asChild>
-              <Link to="/cart" className="text-sm flex items-center">
+              <Link to="/cart" className="flex items-center text-sm">
                 <ArrowLeft className="mr-1.5 h-4 w-4" /> Quay lại giỏ hàng
               </Link>
             </Button>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 md:gap-8">
             {/* Shipping and Payment Info */}
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="lg:col-span-2 space-y-6"
+              className="space-y-6 lg:col-span-2"
             >
               <Card className="shadow-md">
                 <CardHeader className="p-4 border-b">
-                  <CardTitle className="text-lg flex items-center"><Truck className="mr-2 h-5 w-5 text-primary"/> Địa chỉ giao hàng</CardTitle>
+                  <CardTitle className="flex items-center text-lg"><Truck className="w-5 h-5 mr-2 text-primary"/> Địa chỉ giao hàng</CardTitle>
                 </CardHeader>
                 <CardContent className="p-4 space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     <div>
                       <Label htmlFor="fullName">Họ và tên</Label>
                       <Input id="fullName" name="fullName" value={shippingAddress.fullName} onChange={handleInputChange} placeholder="Nguyễn Văn A" />
@@ -143,33 +143,33 @@ import React, { useState } from 'react';
 
               <Card className="shadow-md">
                 <CardHeader className="p-4 border-b">
-                  <CardTitle className="text-lg flex items-center"><DollarSign className="mr-2 h-5 w-5 text-primary"/> Phương thức thanh toán</CardTitle>
+                  <CardTitle className="flex items-center text-lg"><DollarSign className="w-5 h-5 mr-2 text-primary"/> Phương thức thanh toán</CardTitle>
                 </CardHeader>
                 <CardContent className="p-4">
                   <RadioGroup defaultValue="cod" value={paymentMethod} onValueChange={setPaymentMethod}>
-                    <div className="flex items-center space-x-2 p-3 border rounded-md hover:border-primary transition-colors">
+                    <div className="flex items-center p-3 space-x-2 transition-colors border rounded-md hover:border-primary">
                       <RadioGroupItem value="cod" id="cod" />
                       <Label htmlFor="cod" className="flex-grow cursor-pointer">Thanh toán khi nhận hàng (COD)</Label>
                     </div>
-                    <div className="flex items-center space-x-2 p-3 border rounded-md hover:border-primary transition-colors">
+                    <div className="flex items-center p-3 space-x-2 transition-colors border rounded-md hover:border-primary">
                       <RadioGroupItem value="zalopay" id="zalopay" />
                       <Label htmlFor="zalopay" className="flex-grow cursor-pointer">Ví ZaloPay</Label>
                        <img  alt="ZaloPay" class="h-6" src="https://images.unsplash.com/photo-1631005551113-6533834aefea" />
                     </div>
-                    <div className="flex items-center space-x-2 p-3 border rounded-md hover:border-primary transition-colors">
+                    <div className="flex items-center p-3 space-x-2 transition-colors border rounded-md hover:border-primary">
                       <RadioGroupItem value="momo" id="momo" />
                       <Label htmlFor="momo" className="flex-grow cursor-pointer">Ví Momo</Label>
                        <img  alt="Momo" class="h-6" src="https://images.unsplash.com/photo-1556742208-999815fca738" />
                     </div>
-                    <div className="flex items-center space-x-2 p-3 border rounded-md hover:border-primary transition-colors">
+                    <div className="flex items-center p-3 space-x-2 transition-colors border rounded-md hover:border-primary">
                       <RadioGroupItem value="shopeepay" id="shopeepay" />
                       <Label htmlFor="shopeepay" className="flex-grow cursor-pointer">Ví ShopeeCharmPay</Label>
                        <img  alt="ShopeeCharmPay" class="h-6" src="https://images.unsplash.com/photo-1586880244543-0528a802be97" />
                     </div>
-                    <div className="flex items-center space-x-2 p-3 border rounded-md hover:border-primary transition-colors">
+                    <div className="flex items-center p-3 space-x-2 transition-colors border rounded-md hover:border-primary">
                       <RadioGroupItem value="card" id="card" />
                       <Label htmlFor="card" className="flex-grow cursor-pointer">Thẻ tín dụng/Ghi nợ</Label>
-                      <CreditCard className="h-5 w-5 text-muted-foreground"/>
+                      <CreditCard className="w-5 h-5 text-muted-foreground"/>
                     </div>
                   </RadioGroup>
                 </CardContent>
@@ -180,17 +180,17 @@ import React, { useState } from 'react';
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="lg:col-span-1 space-y-6"
+              className="space-y-6 lg:col-span-1"
             >
-              <Card className="shadow-lg glassmorphism sticky top-24">
+              <Card className="sticky shadow-lg glassmorphism top-24">
                 <CardHeader className="p-4 border-b">
-                  <CardTitle className="text-lg flex items-center"><Gift className="mr-2 h-5 w-5 text-primary"/> Đơn hàng của bạn</CardTitle>
+                  <CardTitle className="flex items-center text-lg"><Gift className="w-5 h-5 mr-2 text-primary"/> Đơn hàng của bạn</CardTitle>
                 </CardHeader>
-                <CardContent className="p-4 space-y-3 text-sm max-h-60 overflow-y-auto">
+                <CardContent className="p-4 space-y-3 overflow-y-auto text-sm max-h-60">
                   {cartItems.map(item => (
-                    <div key={`${item.id}-${JSON.stringify(item.variant)}`} className="flex justify-between items-center">
+                    <div key={`${item.id}-${JSON.stringify(item.variant)}`} className="flex items-center justify-between">
                       <div className="flex items-center space-x-2">
-                         <img  className="w-10 h-10 object-cover rounded border" alt={item.name} src="https://images.unsplash.com/photo-1675023112817-52b789fd2ef0" />
+                         <img  className="object-cover w-10 h-10 border rounded" alt={item.name} src="https://images.unsplash.com/photo-1675023112817-52b789fd2ef0" />
                         <div>
                           <p className="font-medium line-clamp-1">{item.name}</p>
                           <p className="text-xs text-muted-foreground">SL: {item.quantity}</p>
@@ -217,13 +217,13 @@ import React, { useState } from 'react';
                   <hr className="my-2 border-border/70 dark:border-border/30"/>
                   <div className="flex justify-between font-bold text-md">
                     <span>Tổng cộng</span>
-                    <span className="text-primary text-lg">{total.toLocaleString()}₫</span>
+                    <span className="text-lg text-primary">{total.toLocaleString()}₫</span>
                   </div>
                 </CardContent>
                 <CardFooter className="p-4">
                   <Button 
                     size="lg" 
-                    className="w-full gradient-shopee text-primary-foreground text-base" 
+                    className="w-full text-base gradient-highlands text-primary-foreground" 
                     onClick={handlePlaceOrder}
                     disabled={cartItems.length === 0}
                   >

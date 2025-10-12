@@ -18,16 +18,16 @@ import React from 'react';
       ];
 
       return (
-        <div className="container mx-auto py-8 md:py-12">
+        <div className="container py-8 mx-auto md:py-12">
           <motion.section
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12 md:mb-16"
+            className="mb-12 text-center md:mb-16"
           >
-            <Building2 className="mx-auto h-16 w-16 md:h-20 md:w-20 text-primary mb-4" />
-            <h1 className="text-4xl md:text-5xl font-bold mb-3 gradient-shopee bg-clip-text text-transparent">Về ShopeeCharm</h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+            <Building2 className="w-16 h-16 mx-auto mb-4 md:h-20 md:w-20 text-primary" />
+            <h1 className="mb-3 text-4xl font-bold text-transparent md:text-5xl gradient-highlands bg-clip-text">Về ShopeeCharm</h1>
+            <p className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
               ShopeeCharm là nền tảng thương mại điện tử hàng đầu, mang đến trải nghiệm mua sắm trực tuyến dễ dàng, an toàn và thú vị cho hàng triệu người dùng.
             </p>
           </motion.section>
@@ -38,12 +38,12 @@ import React from 'react';
             transition={{ delay: 0.2, duration: 0.6 }}
             className="mb-12 md:mb-16"
           >
-            <h2 className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 text-center">Sứ Mệnh Của Chúng Tôi</h2>
-            <div className="grid md:grid-cols-2 gap-6 md:gap-8 items-center">
+            <h2 className="mb-6 text-2xl font-semibold text-center md:text-3xl md:mb-8">Sứ Mệnh Của Chúng Tôi</h2>
+            <div className="grid items-center gap-6 md:grid-cols-2 md:gap-8">
               <div>
-                 <img  className="w-full h-auto rounded-lg shadow-xl object-cover aspect-video" alt="Team working together in a modern office" src="https://images.unsplash.com/photo-1607615896122-6c919f897e55" />
+                 <img  className="object-cover w-full h-auto rounded-lg shadow-xl aspect-video" alt="Team working together in a modern office" src="https://images.unsplash.com/photo-1607615896122-6c919f897e55" />
               </div>
-              <div className="text-muted-foreground space-y-4 text-md leading-relaxed">
+              <div className="space-y-4 leading-relaxed text-muted-foreground text-md">
                 <p>
                   Tại ShopeeCharm, sứ mệnh của chúng tôi là kết nối người mua và người bán một cách hiệu quả, tạo ra một cộng đồng thương mại điện tử năng động và đáng tin cậy. Chúng tôi không ngừng nỗ lực cải tiến công nghệ, đa dạng hóa sản phẩm và nâng cao chất lượng dịch vụ để đáp ứng mọi nhu cầu mua sắm của bạn.
                 </p>
@@ -60,18 +60,18 @@ import React from 'react';
             transition={{ delay: 0.4, duration: 0.6 }}
             className="mb-12 md:mb-16"
           >
-            <h2 className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 text-center">Giá Trị Cốt Lõi</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+            <h2 className="mb-6 text-2xl font-semibold text-center md:text-3xl md:mb-8">Giá Trị Cốt Lõi</h2>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 md:gap-8">
               {values.map((value, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
-                  className="bg-card dark:bg-slate-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow text-center"
+                  className="p-6 text-center transition-shadow rounded-lg shadow-lg bg-card dark:bg-slate-800 hover:shadow-xl"
                 >
-                  <value.icon className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">{value.title}</h3>
+                  <value.icon className="w-12 h-12 mx-auto mb-4 text-primary" />
+                  <h3 className="mb-2 text-lg font-semibold">{value.title}</h3>
                   <p className="text-sm text-muted-foreground">{value.description}</p>
                 </motion.div>
               ))}
@@ -83,17 +83,17 @@ import React from 'react';
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.6 }}
           >
-            <h2 className="text-2xl md:text-3xl font-semibold mb-6 md:mb-8 text-center">Đội Ngũ Của Chúng Tôi</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <h2 className="mb-6 text-2xl font-semibold text-center md:text-3xl md:mb-8">Đội Ngũ Của Chúng Tôi</h2>
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-6">
               {teamMembers.map((member, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.7 + index * 0.1, duration: 0.4 }}
-                  className="bg-card dark:bg-slate-800 p-4 rounded-lg shadow text-center hover:shadow-lg transition-shadow"
+                  className="p-4 text-center transition-shadow rounded-lg shadow bg-card dark:bg-slate-800 hover:shadow-lg"
                 >
-                   <img  className="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-3 border-2 border-primary object-cover" alt={member.alt} src="https://images.unsplash.com/photo-1697256200022-f61abccad430" />
+                   <img  className="object-cover w-24 h-24 mx-auto mb-3 border-2 rounded-full md:w-32 md:h-32 border-primary" alt={member.alt} src="https://images.unsplash.com/photo-1697256200022-f61abccad430" />
                   <h3 className="font-semibold text-md">{member.name}</h3>
                   <p className="text-xs text-primary">{member.role}</p>
                 </motion.div>

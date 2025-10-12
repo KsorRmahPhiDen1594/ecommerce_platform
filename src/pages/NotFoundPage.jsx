@@ -12,13 +12,13 @@ import React from 'react';
             animate={{ opacity: 1, y: 0, rotate: 0 }}
             transition={{ duration: 0.5, type: 'spring', stiffness: 120 }}
           >
-            <AlertTriangle className="h-24 w-24 md:h-32 md:w-32 text-primary mb-6" />
+            <AlertTriangle className="w-24 h-24 mb-6 md:h-32 md:w-32 text-primary" />
           </motion.div>
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="text-4xl md:text-6xl font-bold mb-4"
+            className="mb-4 text-4xl font-bold md:text-6xl"
           >
             404 - Không Tìm Thấy Trang
           </motion.h1>
@@ -26,7 +26,7 @@ import React from 'react';
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="text-lg md:text-xl text-muted-foreground mb-8 max-w-md"
+            className="max-w-md mb-8 text-lg md:text-xl text-muted-foreground"
           >
             Xin lỗi, trang bạn đang tìm kiếm không tồn tại hoặc đã bị di chuyển.
           </motion.p>
@@ -35,7 +35,7 @@ import React from 'react';
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.6, duration: 0.5 }}
           >
-            <Button asChild size="lg" className="gradient-shopee text-primary-foreground text-md px-8 py-3">
+            <Button asChild size="lg" className="px-8 py-3 gradient-highlands text-primary-foreground text-md">
               <Link to="/">Về Trang Chủ</Link>
             </Button>
           </motion.div>
