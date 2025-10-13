@@ -1,99 +1,109 @@
 import React from 'react';
-    import { motion } from 'framer-motion';
-    import { FileText, Shield, Users, ShoppingCart as ShoppingCartIcon } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Coffee, Shield, Users, ShoppingBag } from 'lucide-react';
 
-    const TermsPage = () => {
-      const sections = [
-        {
-          title: "Điều 1: Giới thiệu chung",
-          icon: FileText,
-          content: [
-            "Chào mừng bạn đến với ShopeeCharm! Bằng việc truy cập và sử dụng nền tảng của chúng tôi, bạn đồng ý tuân thủ các Điều khoản Dịch vụ này.",
-            "ShopeeCharm là một nền tảng thương mại điện tử cho phép người dùng mua và bán sản phẩm trực tuyến. Chúng tôi không phải là người bán trực tiếp của các sản phẩm (trừ khi có ghi chú khác)."
-          ]
-        },
-        {
-          title: "Điều 2: Tài khoản người dùng",
-          icon: Users,
-          content: [
-            "Bạn chịu trách nhiệm bảo mật thông tin tài khoản và mật khẩu của mình. Mọi hoạt động diễn ra dưới tài khoản của bạn sẽ được coi là do bạn thực hiện.",
-            "Bạn cam kết cung cấp thông tin chính xác, đầy đủ và cập nhật khi đăng ký tài khoản và trong quá trình sử dụng dịch vụ.",
-            "Chúng tôi có quyền tạm ngưng hoặc chấm dứt tài khoản của bạn nếu phát hiện vi phạm các điều khoản này hoặc các quy định pháp luật liên quan."
-          ]
-        },
-        {
-          title: "Điều 3: Quy định về mua bán",
-          icon: ShoppingCartIcon,
-          content: [
-            "Người bán chịu trách nhiệm về chất lượng, thông tin và tính hợp pháp của sản phẩm đăng bán.",
-            "Người mua có quyền đánh giá sản phẩm và người bán sau khi hoàn tất giao dịch.",
-            "Mọi tranh chấp phát sinh giữa người mua và người bán sẽ được giải quyết dựa trên chính sách của ShopeeCharm và quy định pháp luật hiện hành."
-          ]
-        },
-        {
-          title: "Điều 4: Bảo mật thông tin",
-          icon: Shield,
-          content: [
-            "Chúng tôi cam kết bảo vệ thông tin cá nhân của bạn theo Chính sách Bảo mật của ShopeeCharm.",
-            "Thông tin của bạn có thể được sử dụng để cải thiện dịch vụ, cá nhân hóa trải nghiệm và cho các mục đích tiếp thị (nếu bạn đồng ý)."
-          ]
-        }
-      ];
+const TermsPage = () => {
+  const sections = [
+    {
+      title: "Điều 1: Giới thiệu chung",
+      icon: Coffee,
+      content: [
+        "Chào mừng bạn đến với Highlands Coffee! Bằng việc truy cập và sử dụng website hoặc ứng dụng của chúng tôi, bạn đồng ý tuân thủ các Điều khoản Dịch vụ được quy định tại đây.",
+        "Highlands Coffee là thương hiệu cà phê Việt Nam, cung cấp các sản phẩm cà phê, trà và dịch vụ đặt hàng trực tuyến nhằm mang đến trải nghiệm tốt nhất cho khách hàng."
+      ]
+    },
+    {
+      title: "Điều 2: Tài khoản người dùng",
+      icon: Users,
+      content: [
+        "Khi đăng ký tài khoản trên nền tảng Highlands Coffee, bạn có trách nhiệm bảo mật thông tin đăng nhập của mình.",
+        "Bạn cam kết cung cấp thông tin chính xác, đầy đủ và cập nhật khi sử dụng dịch vụ của chúng tôi.",
+        "Highlands Coffee có quyền tạm khóa hoặc hủy tài khoản nếu phát hiện có hành vi gian lận hoặc vi phạm chính sách sử dụng."
+      ]
+    },
+    {
+      title: "Điều 3: Quy định về mua hàng & thanh toán",
+      icon: ShoppingBag,
+      content: [
+        "Khách hàng có thể đặt mua sản phẩm trực tuyến tại website hoặc ứng dụng Highlands Coffee.",
+        "Giá sản phẩm được hiển thị tại thời điểm đặt hàng và có thể thay đổi tùy theo chương trình khuyến mãi.",
+        "Thanh toán được thực hiện qua nhiều phương thức như tiền mặt, thẻ, hoặc ví điện tử (nếu có hỗ trợ)."
+      ]
+    },
+    {
+      title: "Điều 4: Bảo mật thông tin",
+      icon: Shield,
+      content: [
+        "Highlands Coffee cam kết bảo vệ thông tin cá nhân của khách hàng theo quy định của pháp luật Việt Nam.",
+        "Chúng tôi chỉ sử dụng dữ liệu cá nhân để phục vụ việc cải thiện chất lượng dịch vụ và chăm sóc khách hàng."
+      ]
+    }
+  ];
 
-      return (
-        <div className="container mx-auto py-8 md:py-12">
-          <motion.div
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-10 md:mb-12"
+  return (
+    <div className="container px-4 py-10 mx-auto md:py-16">
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="mb-12 text-center"
+      >
+        <Coffee className="w-16 h-16 mx-auto mb-4 text-red-700" />
+        <h1 className="mb-2 text-3xl font-bold text-red-800 md:text-4xl">
+          Điều Khoản Dịch Vụ Highlands Coffee
+        </h1>
+        <p className="text-gray-600">
+          Cập nhật lần cuối: {new Date().toLocaleDateString('vi-VN')}
+        </p>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 0.6 }}
+        className="max-w-3xl p-6 mx-auto bg-white border border-gray-100 shadow-lg dark:bg-slate-800 md:p-8 rounded-2xl"
+      >
+        <p className="mb-8 text-sm leading-relaxed text-gray-600 md:text-base">
+          Vui lòng đọc kỹ các Điều khoản Dịch vụ này trước khi sử dụng nền tảng của Highlands Coffee. 
+          Việc tiếp tục sử dụng dịch vụ đồng nghĩa với việc bạn chấp nhận và đồng ý bị ràng buộc bởi các điều khoản sau.
+        </p>
+
+        {sections.map((section, index) => (
+          <motion.section
+            key={index}
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
+            className="mb-10"
           >
-            <FileText className="mx-auto h-16 w-16 md:h-20 md:w-20 text-primary mb-4" />
-            <h1 className="text-3xl md:text-4xl font-bold mb-2">Điều Khoản Dịch Vụ ShopeeCharm</h1>
-            <p className="text-md text-muted-foreground">Cập nhật lần cuối: {new Date().toLocaleDateString('vi-VN')}</p>
-          </motion.div>
+            <h2 className="flex items-center mb-3 text-xl font-semibold text-red-700 md:text-2xl">
+              <section.icon className="w-6 h-6 mr-3" /> {section.title}
+            </h2>
+            <div className="space-y-2 text-sm leading-relaxed text-gray-700 md:text-base">
+              {section.content.map((paragraph, pIndex) => (
+                <p key={pIndex}>{paragraph}</p>
+              ))}
+            </div>
+          </motion.section>
+        ))}
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="max-w-3xl mx-auto bg-card dark:bg-slate-800 p-6 md:p-8 rounded-lg shadow-lg"
-          >
-            <p className="text-muted-foreground mb-6 text-sm md:text-md">
-              Vui lòng đọc kỹ các Điều khoản Dịch vụ này trước khi sử dụng nền tảng ShopeeCharm. Việc bạn tiếp tục sử dụng nền tảng đồng nghĩa với việc bạn chấp nhận và đồng ý bị ràng buộc bởi các điều khoản này.
-            </p>
-            {sections.map((section, index) => (
-              <motion.section
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
-                className="mb-8"
-              >
-                <h2 className="text-xl md:text-2xl font-semibold mb-3 flex items-center text-primary">
-                  <section.icon className="h-6 w-6 mr-3" /> {section.title}
-                </h2>
-                <div className="space-y-2 text-muted-foreground text-sm md:text-md leading-relaxed">
-                  {section.content.map((paragraph, pIndex) => (
-                    <p key={pIndex}>{paragraph}</p>
-                  ))}
-                </div>
-              </motion.section>
-            ))}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 + sections.length * 0.1, duration: 0.5 }}
-              className="mt-10 pt-6 border-t dark:border-slate-700"
-            >
-              <h2 className="text-xl font-semibold mb-2">Liên hệ</h2>
-              <p className="text-sm text-muted-foreground">
-                Nếu bạn có bất kỳ câu hỏi nào về Điều khoản Dịch vụ này, vui lòng liên hệ với chúng tôi qua email: <a href="mailto:legal@shopeecharm.vn" className="text-primary hover:underline">legal@shopeecharm.vn</a>.
-              </p>
-            </motion.div>
-          </motion.div>
-        </div>
-      );
-    };
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 + sections.length * 0.1, duration: 0.5 }}
+          className="pt-6 mt-10 border-t border-gray-200"
+        >
+          <h2 className="mb-2 text-xl font-semibold text-red-700">Liên hệ</h2>
+          <p className="text-sm text-gray-600">
+            Mọi thắc mắc về Điều khoản Dịch vụ xin vui lòng liên hệ qua email:{" "}
+            <a href="mailto:support@highlandscoffee.vn" className="text-red-700 hover:underline">
+              support@highlandscoffee.vn
+            </a>
+          </p>
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+};
 
-    export default TermsPage;
+export default TermsPage;
