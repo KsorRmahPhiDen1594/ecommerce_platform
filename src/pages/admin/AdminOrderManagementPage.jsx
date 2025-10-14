@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
     import { Button } from '@/components/ui/button';
     import { Input } from '@/components/ui/input';
     import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
-    import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+    import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../../components/ui/table";
     import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
     import { Badge } from '@/components/ui/badge';
     import { ShoppingCart, MoreHorizontal, Search, Eye, Edit, Truck, CheckCircle, XCircle, RefreshCcw, PenLine as FilePenLine } from 'lucide-react';
