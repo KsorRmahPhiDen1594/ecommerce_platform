@@ -51,7 +51,7 @@ const Footer = () => {
           <div className="mt-5 space-y-2 text-sm text-gray-300">
             <p className="flex items-center"><Phone className="w-4 h-4 mr-2" />1900 1755</p>
             <p className="flex items-center"><Mail className="w-4 h-4 mr-2" />support@highlandscoffee.vn</p>
-            <p className="flex items-center"><MapPin className="w-4 h-4 mr-2" />60 Nguyễn Văn Cừ, Q.1, TP.HCM</p>
+            <p><Link to="/map" className="hover:text-[#F5DEB3]">60 Nguyễn Văn Cừ, Q.1, TP.HCM</Link></p>
           </div>
         </div>
 
