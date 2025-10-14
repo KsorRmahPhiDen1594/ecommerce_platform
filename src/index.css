@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  /* 🎨 Màu nền & chữ mặc định (Light mode) */
+  /* 🎨 Màu nền & chữ (Light mode) */
   --background: 0 0% 100%;
   --foreground: 222.2 84% 4.9%;
   --card: 0 0% 100%;
@@ -11,13 +11,13 @@
   --popover: 0 0% 100%;
   --popover-foreground: 222.2 84% 4.9%;
 
-  /* ❤️ Màu thương hiệu Highlands */
-  --primary: 356 66% 42%; /* #b22830 - Đỏ Highlands */
-  --primary-foreground: 0 0% 100%; /* Chữ trắng */
-  --secondary: 44 91% 62%; /* #f6c443 - Vàng nhấn */
-  --secondary-foreground: 0 0% 0%; /* Chữ đen */
-  --accent: 8 55% 26%; /* #6b1e1e - Nâu Highlands */
-  --accent-foreground: 0 0% 100%; /* Chữ trắng */
+  /* ❤️ Màu thương hiệu Highlands Coffee */
+  --primary: 356 66% 42%; /* #b22830 - Đỏ chính Highlands */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 44 91% 62%; /* #f6c443 - Vàng điểm nhấn */
+  --secondary-foreground: 0 0% 0%;
+  --accent: 7 64% 30%; /* #7B241C - Đỏ nâu ấm */
+  --accent-foreground: 0 0% 100%;
 
   --muted: 210 40% 96.1%;
   --muted-foreground: 215.4 16.3% 46.9%;
@@ -26,27 +26,24 @@
 
   --border: 214.3 31.8% 91.4%;
   --input: 214.3 31.8% 91.4%;
-  --ring: 356 66% 42%; /* Đỏ Highlands cho hiệu ứng focus */
+  --ring: 356 66% 42%; /* đỏ focus */
   --radius: 0.5rem;
 }
 
+/* 🌑 Dark mode giữ cùng tone */
 .dark {
-  /* 🌑 Màu nền & chữ cho Dark mode */
   --background: 222.2 84% 4.9%;
   --foreground: 210 40% 98%;
   --card: 222.2 84% 4.9%;
   --card-foreground: 210 40% 98%;
   --popover: 222.2 84% 4.9%;
   --popover-foreground: 210 40% 98%;
-
-  /* ❤️ Màu Highlands vẫn giữ nguyên */
   --primary: 356 66% 42%;
   --primary-foreground: 0 0% 100%;
   --secondary: 44 91% 62%;
   --secondary-foreground: 0 0% 0%;
-  --accent: 8 55% 26%;
+  --accent: 7 64% 30%;
   --accent-foreground: 0 0% 100%;
-
   --muted: 217.2 32.6% 17.5%;
   --muted-foreground: 215 20.2% 65.1%;
   --destructive: 0 62.8% 30.6%;
@@ -56,17 +53,17 @@
   --ring: 356 66% 42%;
 }
 
-/* 🌐 Thiết lập font & nền chung */
+/* 🌐 Font & màu nền */
 body {
   @apply bg-background text-foreground;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-    Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
-/* ☕ Gradient Highlands (đỏ → nâu) */
+/* ☕ Gradient Highlands (đỏ rượu → đỏ nâu → nâu cà phê) */
 .gradient-highlands {
-  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+  background: linear-gradient(135deg, #5a1e1e 0%, #7b241c 50%, #3e2723 100%);
 }
 
 /* 🌫️ Hiệu ứng kính mờ */

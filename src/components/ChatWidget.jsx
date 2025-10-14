@@ -36,17 +36,17 @@ const ChatWidget = () => {
     <>
       {/* Nút mở chat */}
       <motion.div
-        className="fixed bottom-6 right-6 z-[999]"
+        className='fixed bottom-6 right-6 z-[999]'
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: 1, duration: 0.5, type: 'spring' }}
       >
         <Button
-          size="lg"
-          className="w-16 h-16 p-4 rounded-full shadow-xl bg-gradient-to-r from-[#7B1E1E] to-[#4B1E1E] text-[#F8F5EE] hover:from-[#8E2424] hover:to-[#5A2323] transition-all"
+          size='lg'
+          className='w-16 h-16 p-4 rounded-full shadow-xl bg-gradient-to-r from-[#7B1E1E] to-[#4B1E1E] text-[#F8F5EE] hover:from-[#8E2424] hover:to-[#5A2323] transition-all'
           onClick={toggleChat}
         >
-          {isOpen ? <X className="h-7 w-7" /> : <MessageSquare className="h-7 w-7" />}
+          {isOpen ? <X className='h-7 w-7' /> : <MessageSquare className='h-7 w-7' />}
         </Button>
       </motion.div>
 
@@ -58,16 +58,16 @@ const ChatWidget = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 50, scale: 0.9 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="fixed bottom-24 right-6 z-[998] w-80 md:w-96"
+            className='fixed bottom-24 right-6 z-[998] w-80 md:w-96'
           >
-            <Card className="shadow-2xl border-[#7B1E1E]/40 bg-[#F8F5EE]">
-              <CardHeader className="p-4 bg-gradient-to-r from-[#7B1E1E] to-[#4B1E1E] text-[#F8F5EE]">
-                <CardTitle className="flex items-center text-lg font-semibold">
-                  <MessageSquare className="w-5 h-5 mr-2 text-[#C6A664]" /> Hỗ trợ Highlands Coffee
+            <Card className='shadow-2xl border-[#7B1E1E]/40 bg-[#F8F5EE]'>
+              <CardHeader className='p-4 bg-gradient-to-r from-[#7B1E1E] to-[#4B1E1E] text-[#F8F5EE]'>
+                <CardTitle className='flex items-center text-lg font-semibold'>
+                  <MessageSquare className='w-5 h-5 mr-2 text-[#C6A664]' /> Hỗ trợ Highlands Coffee
                 </CardTitle>
               </CardHeader>
 
-              <CardContent className="p-4 space-y-3 overflow-y-auto h-80">
+              <CardContent className='p-4 space-y-3 overflow-y-auto h-80'>
                 {messages.map((msg) => (
                   <div
                     key={msg.id}
@@ -86,20 +86,20 @@ const ChatWidget = () => {
                 ))}
               </CardContent>
 
-              <CardFooter className="p-3 border-t border-[#C6A664]/30 bg-[#F8F5EE]">
-                <form onSubmit={handleSendMessage} className="flex w-full space-x-2">
+              <CardFooter className='p-3 border-t border-[#C6A664]/30 bg-[#F8F5EE]'>
+                <form onSubmit={handleSendMessage} className='flex w-full space-x-2'>
                   <Input
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
-                    placeholder="Nhập tin nhắn..."
-                    className="flex-grow border-[#C6A664]/40 focus:ring-[#7B1E1E]"
+                    placeholder='Nhập tin nhắn...'
+                    className='flex-grow border-[#C6A664]/40 focus:ring-[#7B1E1E]'
                   />
                   <Button
-                    type="submit"
-                    size="icon"
-                    className="bg-gradient-to-r from-[#7B1E1E] to-[#4B1E1E] text-[#F8F5EE] hover:from-[#8E2424] hover:to-[#5A2323]"
+                    type='submit'
+                    size='icon'
+                    className='bg-gradient-to-r from-[#7B1E1E] to-[#4B1E1E] text-[#F8F5EE] hover:from-[#8E2424] hover:to-[#5A2323]'
                   >
-                    <Send className="w-4 h-4 text-[#C6A664]" />
+                    <Send className='w-4 h-4 text-[#C6A664]' />
                   </Button>
                 </form>
               </CardFooter>

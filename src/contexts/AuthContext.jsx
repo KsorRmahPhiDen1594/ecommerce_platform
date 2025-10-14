@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
         atob(base64)
           .split('')
           .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
-          .join('')
+          .join(''),
       );
       return JSON.parse(jsonPayload);
     } catch (e) {
@@ -95,46 +95,45 @@ export const AuthProvider = ({ children }) => {
   };
 
   // ✅ Login Admin
-const adminLogin = async (email, password, otp = null) => {
-  setLoading(true);
-  try {
-    const res = await fetch('http://localhost:8080/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      body: JSON.stringify({ username: email, password })
-    });
+  const adminLogin = async (email, password, otp = null) => {
+    setLoading(true);
+    try {
+      const res = await fetch('http://localhost:8080/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        body: JSON.stringify({ username: email, password }),
+      });
 
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || data.message || 'Đăng nhập thất bại');
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || data.message || 'Đăng nhập thất bại');
 
-    const payload = decodeJwtPayload(data.token); // ✅ Dùng decode UTF-8 an toàn
-    const userRoles = payload.roles || [];
+      const payload = decodeJwtPayload(data.token); // ✅ Dùng decode UTF-8 an toàn
+      const userRoles = payload.roles || [];
 
-    // Kiểm tra quyền admin
-    if (!userRoles.includes('ROLE_ADMIN') && !userRoles.includes('ADMIN')) {
-      throw new Error('Tài khoản không có quyền quản trị.');
+      // Kiểm tra quyền admin
+      if (!userRoles.includes('ROLE_ADMIN') && !userRoles.includes('ADMIN')) {
+        throw new Error('Tài khoản không có quyền quản trị.');
+      }
+
+      const user = {
+        name: payload.sub,
+        username: payload.sub,
+        roles: userRoles,
+      };
+
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      setCurrentUser(user);
+
+      toast({ title: 'Đăng nhập Admin thành công' });
+      navigate('/admin/dashboard');
+    } catch (err) {
+      toast({ variant: 'destructive', title: 'Lỗi', description: err.message });
+      throw err;
+    } finally {
+      setLoading(false);
     }
-
-    const user = {
-      name: payload.sub,
-      username: payload.sub,
-      roles: userRoles
-    };
-
-    localStorage.setItem('token', data.token);
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    setCurrentUser(user);
-
-    toast({ title: 'Đăng nhập Admin thành công' });
-    navigate('/admin/dashboard');
-  } catch (err) {
-    toast({ variant: 'destructive', title: 'Lỗi', description: err.message });
-    throw err;
-  } finally {
-    setLoading(false);
-  }
   };
-
 
   // ✅ Register user
   const register = async (name, email, password) => {
@@ -174,8 +173,7 @@ const adminLogin = async (email, password, otp = null) => {
   };
 
   const isAdmin = () =>
-    currentUser?.roles?.includes('ROLE_ADMIN') ||
-    currentUser?.roles?.includes('ADMIN');
+    currentUser?.roles?.includes('ROLE_ADMIN') || currentUser?.roles?.includes('ADMIN');
 
   return (
     <AuthContext.Provider
