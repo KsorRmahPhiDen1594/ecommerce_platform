@@ -36,24 +36,28 @@ const AboutPage = () => {
       description:
         "Highlands Coffee cam kết mang đến từng ly cà phê đậm đà hương vị Việt với nguồn nguyên liệu tuyển chọn kỹ lưỡng.",
       icon: ShieldCheck,
+      image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93", // coffee quality
     },
     {
       title: "Tôn vinh giá trị Việt",
       description:
         "Mỗi sản phẩm của chúng tôi đều kể câu chuyện về văn hóa Việt Nam – thân quen, gần gũi và tự hào.",
       icon: Heart,
+      image: "https://images.unsplash.com/photo-1587464111670-538b2c42ec9f", // Vietnamese culture
     },
     {
       title: "Bền vững và thân thiện",
       description:
         "Hướng đến phát triển bền vững, bảo vệ môi trường và cộng đồng địa phương nơi Highlands hiện diện.",
       icon: Leaf,
+      image: "https://images.unsplash.com/photo-1523906834658-6e24ef2386f9", // eco-friendly
     },
     {
       title: "Kết nối cộng đồng",
       description:
         "Highlands Coffee không chỉ là nơi thưởng thức cà phê, mà còn là điểm đến để sẻ chia, kết nối và lan tỏa niềm vui.",
       icon: Globe,
+      image: "https://images.unsplash.com/photo-1531058020387-3be344556be6", // community
     },
   ];
 
@@ -71,8 +75,9 @@ const AboutPage = () => {
           Về Highlands Coffee
         </h1>
         <p className="max-w-2xl mx-auto text-lg md:text-xl text-muted-foreground">
-          Highlands Coffee – thương hiệu cà phê Việt được xây dựng với niềm tự hào
-          dân tộc, mang đến hương vị cà phê đậm đà và không gian sẻ chia ấm áp.
+          Highlands Coffee – thương hiệu cà phê Việt được xây dựng với niềm tự
+          hào dân tộc, mang đến hương vị cà phê đậm đà và không gian sẻ chia ấm
+          áp.
         </p>
       </motion.section>
 
@@ -80,42 +85,54 @@ const AboutPage = () => {
       <motion.section
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.2, duration: 0.6 }}
-        className="mb-12 md:mb-16"
+        transition={{ delay: 0.4, duration: 0.6 }}
+        className="mb-20 md:mb-24"
       >
-        <h2 className="mb-6 text-2xl font-semibold text-center md:text-3xl md:mb-8 text-amber-800">
-          Sứ Mệnh Của Chúng Tôi
+        <h2 className="mb-12 text-2xl font-semibold text-center md:text-3xl text-amber-800">
+          Giá Trị Cốt Lõi
         </h2>
-        <div className="grid items-center gap-6 md:grid-cols-2 md:gap-8">
-          <div>
-            <img
-              className="object-cover w-full h-auto rounded-lg shadow-xl aspect-video"
-              alt="Không gian Highlands Coffee ấm cúng"
-              src="https://images.unsplash.com/photo-1509042239860-f550ce710b93"
-            />
-          </div>
-          <div className="space-y-4 leading-relaxed text-muted-foreground text-md">
-            <p>
-              Tại Highlands Coffee, chúng tôi bắt đầu hành trình của mình với mong
-              muốn tôn vinh giá trị Việt qua hạt cà phê Việt. Mỗi ly cà phê được
-              tạo nên từ niềm đam mê, sự tận tâm và lòng tự hào dân tộc.
-            </p>
-            <p>
-              Chúng tôi không ngừng cải tiến, đổi mới để mang lại cho khách hàng
-              những trải nghiệm cà phê độc đáo và gần gũi – nơi mọi người có thể
-              tìm thấy niềm vui, sự kết nối và cảm hứng mỗi ngày.
-            </p>
-          </div>
+        <div className="space-y-20">
+          {values.map((value, index) => {
+            const isEven = index % 2 === 0;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
+                className={`flex flex-col md:flex-row ${
+                  !isEven ? "md:flex-row-reverse" : ""
+                } items-center gap-10 md:gap-16`}
+              >
+                {/* Hình ảnh minh hoạ cho giá trị */}
+                <div className="w-full md:w-1/2">
+                  <img
+                    src={value.image}
+                    alt={value.title}
+                    className="object-cover w-full h-auto shadow-lg rounded-xl aspect-video"
+                  />
+                </div>
+
+                {/* Nội dung giá trị */}
+                <div className="w-full space-y-4 md:w-1/2">
+                  <div className="flex items-center gap-3">
+                    <value.icon className="w-8 h-8 text-amber-700" />
+                    <h3 className="text-xl font-semibold text-amber-800">
+                      {value.title}
+                    </h3>
+                  </div>
+                  <p className="leading-relaxed text-gray-700 text-md">
+                    {value.description}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </motion.section>
 
       {/* Giá trị cốt lõi */}
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4, duration: 0.6 }}
-        className="mb-12 md:mb-16"
-      >
+      <motion.section>
         <h2 className="mb-6 text-2xl font-semibold text-center md:text-3xl md:mb-8 text-amber-800">
           Giá Trị Cốt Lõi
         </h2>
@@ -144,7 +161,7 @@ const AboutPage = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 0.6 }}
       >
-        <h2 className="mb-6 text-2xl font-semibold text-center md:text-3xl md:mb-8 text-amber-800">
+        <h2 className="mt-10 mb-6 text-2xl font-semibold text-center md:text-3xl md:mb-8 text-amber-800">
           Đội Ngũ Của Chúng Tôi
         </h2>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-6">

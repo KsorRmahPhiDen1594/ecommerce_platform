@@ -4,21 +4,24 @@ import { motion } from "framer-motion";
 
 const FranchisePage = () => {
   return (
-    <div className="bg-white min-h-screen text-[#3c1e1e]">
+    <div className="min-h-screen text-[#3c1e1e] overflow-hidden">
       {/* Header */}
-      <section className="bg-gradient-to-r from-[#7b1e1e] to-[#a72626] text-white py-16 text-center">
-        <motion.h1
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="text-4xl font-extrabold tracking-wide uppercase md:text-5xl"
-        >
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="py-16 mb-10 text-center"
+      >
+        <Coffee className="w-16 h-16 mx-auto mb-4 text-[#7B241C]" />
+        <h1 className="mb-2 text-3xl font-bold md:text-4xl bg-gradient-to-r from-[#5A1E1E] via-[#7B241C] to-[#3E2723] bg-clip-text text-transparent">
+          {" "}
           Nhượng Quyền Highlands Coffee
-        </motion.h1>
-        <p className="max-w-3xl mx-auto mt-4 text-lg text-white/90">
-          Trở thành đối tác cùng thương hiệu cà phê hàng đầu Việt Nam — cùng nhau lan tỏa hương vị Việt đậm đà khắp mọi miền đất nước.
+        </h1>
+        <p className="text-lg text-[#3E2723]/80">
+          Trở thành đối tác cùng thương hiệu cà phê hàng đầu Việt Nam — cùng
+          nhau lan tỏa hương vị Việt đậm đà khắp mọi miền đất nước.
         </p>
-      </section>
+      </motion.div>
 
       {/* Giới thiệu */}
       <section className="max-w-6xl px-6 py-16 mx-auto">
@@ -38,9 +41,10 @@ const FranchisePage = () => {
               Cơ hội hợp tác bền vững
             </h2>
             <p className="text-lg leading-relaxed text-gray-700">
-              Highlands Coffee tự hào là thương hiệu Việt được hàng triệu khách hàng tin yêu. 
-              Với hơn 500 cửa hàng trên toàn quốc, chúng tôi luôn mong muốn đồng hành cùng những nhà đầu tư 
-              có chung niềm đam mê cà phê, kinh doanh và lan tỏa văn hóa thưởng thức cà phê Việt.
+              Highlands Coffee tự hào là thương hiệu Việt được hàng triệu khách
+              hàng tin yêu. Với hơn 500 cửa hàng trên toàn quốc, chúng tôi luôn
+              mong muốn đồng hành cùng những nhà đầu tư có chung niềm đam mê cà
+              phê, kinh doanh và lan tỏa văn hóa thưởng thức cà phê Việt.
             </p>
           </div>
         </motion.div>
@@ -78,7 +82,9 @@ const FranchisePage = () => {
                 className="p-8 duration-300 bg-white shadow-lg rounded-2xl hover:shadow-xl"
               >
                 <div className="flex justify-center mb-4">{item.icon}</div>
-                <h3 className="font-semibold text-xl mb-2 text-[#7b1e1e]">{item.title}</h3>
+                <h3 className="font-semibold text-xl mb-2 text-[#7b1e1e]">
+                  {item.title}
+                </h3>
                 <p className="text-gray-600">{item.desc}</p>
               </motion.div>
             ))}
@@ -92,7 +98,8 @@ const FranchisePage = () => {
           Đăng ký hợp tác nhượng quyền
         </h2>
         <p className="max-w-2xl mx-auto mb-10 text-gray-700">
-          Hãy để lại thông tin, đội ngũ Highlands Coffee sẽ liên hệ với bạn để tư vấn chi tiết.
+          Hãy để lại thông tin, đội ngũ Highlands Coffee sẽ liên hệ với bạn để
+          tư vấn chi tiết.
         </p>
         <form className="grid gap-6 text-left md:grid-cols-2">
           <input
@@ -128,18 +135,6 @@ const FranchisePage = () => {
           </motion.button>
         </form>
       </section>
-
-      {/* Liên hệ */}
-      <footer className="bg-[#3c1e1e] text-white py-10">
-        <div className="max-w-5xl mx-auto space-y-4 text-center">
-          <h3 className="mb-2 text-2xl font-bold">Liên hệ Highlands Coffee</h3>
-          <div className="flex flex-wrap justify-center gap-6 text-white/90">
-            <p className="flex items-center gap-2"><Phone className="w-5 h-5" /> 1900 1755</p>
-            <p className="flex items-center gap-2"><Mail className="w-5 h-5" /> franchise@highlandscoffee.com.vn</p>
-            <p className="flex items-center gap-2"><MapPin className="w-5 h-5" /> TP. Hồ Chí Minh, Việt Nam</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

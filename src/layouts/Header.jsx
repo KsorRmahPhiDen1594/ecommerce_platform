@@ -206,10 +206,10 @@ const Header = () => {
               </DropdownMenu>
             ) : (
               <div className="flex space-x-2">
-                <Button variant="outline" asChild>
+                <Button className="from-[#5A1E1E] via-[#7B241C] to-[#3E2723]" variant="outline" asChild>
                   <Link to="/login">Đăng Nhập</Link>
                 </Button>
-                <Button className="bg-[#53382C] hover:bg-[#6a493c] text-white" asChild>
+                <Button className="from-[#5A1E1E] via-[#7B241C] to-[#3E2723] text-white" asChild>
                   <Link to="/register">Đăng Ký</Link>
                 </Button>
               </div>

@@ -1,46 +1,144 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { MessageSquare, Star, Send } from "lucide-react";
+import { Star, Send, Coffee } from "lucide-react";
 
 const FeedbackPage = () => {
   return (
-    <div className="bg-[#fffaf7] min-h-screen text-[#3c1e1e]">
+    <div className="min-h-screen text-[#3c1e1e] overflow-hidden">
       {/* Header */}
-      <section className="bg-gradient-to-r from-[#7b1e1e] to-[#a72626] py-16 text-center text-white">
-        <motion.h1
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-4xl font-extrabold uppercase md:text-5xl"
-        >
+      <motion.div
+        initial={{ opacity: 0, y: -30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="py-16 mb-10 text-center"
+      >
+        <Coffee className="w-16 h-16 mx-auto mb-4 text-[#7B241C]" />
+        <h1 className="mb-2 text-3xl font-bold md:text-4xl bg-gradient-to-r from-[#5A1E1E] via-[#7B241C] to-[#3E2723] bg-clip-text text-transparent">
+          {" "}
           Góp Ý & Phản Hồi
-        </motion.h1>
-        <p className="mt-3 text-lg text-white/90">
-          Chúng tôi luôn trân trọng mọi chia sẻ từ bạn để hoàn thiện Highlands Coffee ngày càng tốt hơn!
+        </h1>
+        <p className="text-lg text-[#3E2723]/80">
+          Mỗi ý kiến của bạn là một tách cà phê đong đầy cảm xúc giúp chúng tôi
+          hoàn thiện hơn từng ngày.
         </p>
+      </motion.div>
+      {/* Section 1 */}
+      <section className="grid items-center max-w-6xl gap-12 px-6 py-20 mx-auto md:grid-cols-2">
+        <motion.div
+          initial={{ x: -80, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="space-y-5"
+        >
+          <h2 className="text-3xl font-bold text-[#7b1e1e]">
+            Chia sẻ cảm nhận của bạn ☕
+          </h2>
+          <p className="leading-relaxed text-gray-700">
+            Chúng tôi tin rằng mỗi khách hàng đều có câu chuyện riêng cùng
+            Highlands Coffee. Hãy kể cho chúng tôi nghe về trải nghiệm của bạn —
+            từng ly cà phê, từng nụ cười, từng khoảnh khắc đáng nhớ.
+          </p>
+          <p className="text-gray-600">
+            Phản hồi của bạn sẽ giúp Highlands không chỉ phục vụ cà phê ngon
+            hơn, mà còn mang đến những giây phút ý nghĩa hơn.
+          </p>
+        </motion.div>
+
+        <motion.img
+          initial={{ x: 80, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=900&q=60"
+          alt="Highlands Coffee Experience"
+          className="transition duration-300 rounded-xl hover:scale-105"
+        />
       </section>
 
-      {/* Nội dung */}
-      <section className="max-w-3xl px-6 mx-auto py-14">
-        <div className="mb-10 text-center">
-          <MessageSquare className="w-14 h-14 text-[#7b1e1e] mx-auto mb-4" />
-          <h2 className="text-2xl md:text-3xl font-bold text-[#7b1e1e]">
-            Chia sẻ cảm nhận của bạn
-          </h2>
-          <p className="mt-2 text-gray-600">
-            Hãy cho chúng tôi biết trải nghiệm của bạn tại Highlands Coffee.
-          </p>
-        </div>
+      {/* Section 2 */}
+      <section className="grid items-center max-w-6xl gap-12 px-6 py-20 mx-auto md:grid-cols-2">
+        <motion.img
+          initial={{ x: -80, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=60"
+          alt="Coffee Feedback"
+          className="order-1 transition duration-300 rounded-xl hover:scale-105 md:order-1"
+        />
 
-        {/* Form góp ý */}
+        <motion.div
+          initial={{ x: 80, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="order-2 space-y-5 md:order-2"
+        >
+          <h2 className="text-3xl font-bold text-[#7b1e1e]">
+            Đánh giá & góp ý của bạn
+          </h2>
+          <p className="leading-relaxed text-gray-700">
+            Chúng tôi lắng nghe mọi lời khen, mọi góp ý, dù nhỏ nhất. Đó chính
+            là hạt giống để Highlands Coffee vươn mình và phục vụ bạn tốt hơn
+            từng ngày.
+          </p>
+          <p className="text-gray-600">
+            Hãy để lại cảm nhận của bạn dưới đây – Highlands sẽ luôn trân trọng
+            từng chia sẻ!
+          </p>
+        </motion.div>
+      </section>
+
+      {/* ✅ Timeline tiếp nhận phản hồi */}
+      <section className="max-w-4xl px-6 py-10 mx-auto">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <h3 className="mb-6 text-xl font-semibold text-center">
+            Quy trình tiếp nhận phản hồi
+          </h3>
+          <ul className="space-y-4 text-sm text-gray-700">
+            <li className="flex items-start gap-3">
+              <Coffee className="text-[#a72626] mt-1" />
+              <span>
+                <strong>1.</strong> Bạn gửi góp ý bằng form bên dưới.
+              </span>
+            </li>
+            <li className="flex items-start gap-3">
+              <Coffee className="text-[#a72626] mt-1" />
+              <span>
+                <strong>2.</strong> Đội ngũ của chúng tôi tiếp nhận và đánh giá
+                thông tin.
+              </span>
+            </li>
+            <li className="flex items-start gap-3">
+              <Coffee className="text-[#a72626] mt-1" />
+              <span>
+                <strong>3.</strong> Highlands điều chỉnh và cải thiện dịch vụ
+                nếu cần thiết.
+              </span>
+            </li>
+          </ul>
+        </motion.div>
+      </section>
+
+      {/* Form góp ý */}
+      <section className="max-w-3xl px-6 py-16 mx-auto">
         <motion.form
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="bg-white rounded-2xl shadow-lg border border-[#f0d5c8] p-6 md:p-8 space-y-5"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="bg-white rounded-2xl shadow-md border border-[#f0d5c8] p-8 md:p-10 space-y-6"
         >
           <div>
-            <label className="block mb-2 text-sm font-semibold">Họ và tên</label>
+            <label className="block mb-2 text-sm font-semibold">
+              Họ và tên
+            </label>
             <input
               type="text"
               placeholder="Nhập họ và tên của bạn"
@@ -61,9 +159,12 @@ const FeedbackPage = () => {
             <label className="block mb-2 text-sm font-semibold">
               Đánh giá trải nghiệm
             </label>
-            <div className="flex gap-2 text-[#f5b301] text-2xl justify-start">
+            <div className="flex gap-2 text-[#f5b301] text-2xl">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="transition cursor-pointer hover:scale-110" />
+                <Star
+                  key={i}
+                  className="transition cursor-pointer hover:scale-110"
+                />
               ))}
             </div>
           </div>
@@ -87,20 +188,10 @@ const FeedbackPage = () => {
             <Send className="w-4 h-4" /> Gửi phản hồi
           </motion.button>
         </motion.form>
-      </section>
 
-      {/* Cảm ơn */}
-      <section className="bg-[#7b1e1e] text-center text-white py-12">
-        <motion.h3
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
-          className="mb-3 text-2xl font-semibold"
-        >
-          Cảm ơn bạn đã đồng hành cùng Highlands Coffee!
-        </motion.h3>
-        <p className="text-white/80">
-          Mọi phản hồi của bạn sẽ giúp chúng tôi phục vụ ngày càng tốt hơn.
+        {/* ✅ Nhẹ nhàng cảm ơn dưới form */}
+        <p className="mt-6 text-sm text-center text-gray-500">
+          Cảm ơn bạn đã dành thời gian chia sẻ với Highlands ☕
         </p>
       </section>
     </div>

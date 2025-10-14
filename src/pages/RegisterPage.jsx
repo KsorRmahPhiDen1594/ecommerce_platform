@@ -1,183 +1,189 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
-import { Checkbox } from '@/components/ui/checkbox';
-// Xóa useAuth nếu không dùng, hoặc giữ nếu cần sync state sau
-// import { useAuth } from '@/contexts/AuthContext';
-import { UserPlus, ShoppingCart, Mail, KeyRound, User as UserIcon, Eye, EyeOff } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast';
+"use client";
 
-const RegisterPage = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { UserPlus, Mail, KeyRound, Eye, EyeOff } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
+
+export default function RegisterPage() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);  // ✅ Local loading
-  // const { register, loading } = useAuth();  // Xóa nếu không dùng
-  const navigate = useNavigate();
+  const { register, loading } = useAuth();
   const { toast } = useToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);  // ✅ Start loading
 
-    if (!name || !email || !password || !confirmPassword) {
-      toast({ variant: "destructive", title: "Lỗi", description: "Vui lòng điền đầy đủ thông tin." });
-      setIsLoading(false);
+    if (!username || !email || !password || !confirmPassword) {
+      toast({
+        variant: "destructive",
+        title: "Lỗi",
+        description: "Vui lòng điền đầy đủ tất cả các trường.",
+      });
       return;
     }
 
     if (password !== confirmPassword) {
-      toast({ variant: "destructive", title: "Lỗi", description: "Mật khẩu xác nhận không khớp." });
-      setIsLoading(false);
-      return;
-    }
-
-    if (!agreedToTerms) {
-      toast({ variant: "destructive", title: "Lỗi", description: "Bạn phải đồng ý với Điều khoản dịch vụ." });
-      setIsLoading(false);
-      return;
-    }
-
-    try {
-      const res = await fetch('http://localhost:8080/api/auth/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: name, email, password })
+      toast({
+        variant: "destructive",
+        title: "Lỗi",
+        description: "Mật khẩu xác nhận không khớp.",
       });
-
-      let data;
-      if (res.headers.get('content-type')?.includes('application/json')) {
-        data = await res.json();
-      } else {
-        data = await res.text();  // ✅ Backend trả text string, không JSON
-      }
-
-      if (!res.ok) {
-        // ✅ Map error cụ thể
-        let errorMsg = 'Đăng ký thất bại';
-        if (data === 'Username đã tồn tại') {
-          errorMsg = 'Tên người dùng đã tồn tại. Vui lòng chọn tên khác.';
-        } else if (data.includes('email')) {
-          errorMsg = 'Email đã được sử dụng.';
-        } else {
-          errorMsg = data || errorMsg;
-        }
-        throw new Error(errorMsg);
-      }
-
-      toast({ title: "Thành công", description: "Đăng ký tài khoản thành công! Vui lòng đăng nhập." });
-
-      // Optional: Auto-login sau register (gọi login API và lưu token)
-      // const loginRes = await fetch('http://localhost:8080/api/auth/login', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ username: name, password })
-      // });
-      // const loginData = await loginRes.json();
-      // if (loginRes.ok && loginData.token) {
-      //   localStorage.setItem('token', loginData.token);
-      //   // Parse JWT payload nếu cần user info
-      //   const payload = JSON.parse(atob(loginData.token.split('.')[1]));
-      //   // Sync với AuthContext: register(name, email, payload); // Hoặc useAuth().login(...)
-      //   navigate("/");
-      // } else {
-      //   navigate("/login");
-      // }
-
-      navigate("/login");  // Default: Chuyển sang login
-    } catch (err) {
-      toast({ variant: 'destructive', title: 'Lỗi', description: err.message });
-    } finally {
-      setIsLoading(false);  // ✅ Stop loading
+      return;
     }
+
+    await register(username, email, password);
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4 bg-gradient-to-br from-primary/10 via-background to-secondary/10 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
+    <div className="flex items-center justify-center min-h-screen p-6 bg-gradient-to-br from-[#5A1E1E] via-[#7B241C] to-[#3E2723]">
       <motion.div
-        initial={{ opacity: 0, y: 50 }}
+        initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, type: "spring" }}
-        className="w-full max-w-lg"
+        transition={{ duration: 0.7 }}
+        className="w-full max-w-md"
       >
-        <Card className="shadow-2xl glassmorphism border-primary/20">
+        <Card className="shadow-2xl bg-[#faf5f0]/80 backdrop-blur-md border border-[#d9b38c]/30">
           <CardHeader className="p-6 text-center">
-            <Link to="/" className="flex items-center justify-center mb-4 text-3xl font-bold text-transparent gradient-highlands bg-clip-text">
-              <ShoppingCart className="w-8 h-8 mr-2 text-primary" />
-              ShopeeCharm
+            <Link to="/" className="flex justify-center mb-2">
+              <img
+                src="https://bizweb.dktcdn.net/100/487/455/themes/917232/assets/logo.png?1759892738511"
+                alt="Highlands Coffee Logo"
+                className="object-contain h-20"
+              />
             </Link>
-            <CardTitle className="text-2xl font-semibold">Tạo Tài Khoản Mới</CardTitle>
-            <CardDescription>Tham gia ShopeeCharm ngay hôm nay!</CardDescription>
+            <CardTitle className="text-2xl font-semibold text-[#5A1E1E]">
+              Đăng Ký Highlands Coffee
+            </CardTitle>
+            <CardDescription className="text-[#7B241C]">
+              Trở thành thành viên để nhận ưu đãi hấp dẫn ☕
+            </CardDescription>
           </CardHeader>
 
           <CardContent className="px-6 pb-6 space-y-5">
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-1.5">
-                <Label htmlFor="name">Tên hiển thị</Label>
-                <div className="relative">
-                  <UserIcon className="absolute w-4 h-4 -translate-y-1/2 left-3 top-1/2 text-muted-foreground" />
-                  <Input id="name" placeholder="Nguyễn Văn A" value={name} onChange={(e) => setName(e.target.value)} className="pl-10" required disabled={isLoading} />
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <Label htmlFor="email">Email</Label>
-                <div className="relative">
-                  <Mail className="absolute w-4 h-4 -translate-y-1/2 left-3 top-1/2 text-muted-foreground" />
-                  <Input id="email" type="email" placeholder="nhapemail@example.com" value={email} onChange={(e) => setEmail(e.target.value)} className="pl-10" required disabled={isLoading} />
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <Label htmlFor="password">Mật khẩu</Label>
-                <div className="relative">
-                  <KeyRound className="absolute w-4 h-4 -translate-y-1/2 left-3 top-1/2 text-muted-foreground" />
-                  <Input id="password" type={showPassword ? "text" : "password"} placeholder="Ít nhất 6 ký tự" value={password} onChange={(e) => setPassword(e.target.value)} className="pl-10 pr-10" required disabled={isLoading} />
-                  <Button type="button" variant="ghost" size="icon" className="absolute w-8 h-8 -translate-y-1/2 right-1 top-1/2" onClick={() => setShowPassword(!showPassword)} disabled={isLoading}>
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  </Button>
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <Label htmlFor="confirmPassword">Xác nhận mật khẩu</Label>
-                <div className="relative">
-                  <KeyRound className="absolute w-4 h-4 -translate-y-1/2 left-3 top-1/2 text-muted-foreground" />
-                  <Input id="confirmPassword" type={showConfirmPassword ? "text" : "password"} placeholder="Nhập lại mật khẩu" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="pl-10 pr-10" required disabled={isLoading} />
-                  <Button type="button" variant="ghost" size="icon" className="absolute w-8 h-8 -translate-y-1/2 right-1 top-1/2" onClick={() => setShowConfirmPassword(!showConfirmPassword)} disabled={isLoading}>
-                    {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  </Button>
-                </div>
-              </div>
-
-              <div className="flex items-center pt-1 space-x-2">
-                <Checkbox id="terms" checked={agreedToTerms} onCheckedChange={setAgreedToTerms} disabled={isLoading} />
-                <Label htmlFor="terms" className="text-xs font-normal text-muted-foreground">
-                  Tôi đồng ý với <Link to="/terms" className="text-primary hover:underline">Điều khoản dịch vụ</Link> và <Link to="/privacy-policy" className="text-primary hover:underline">Chính sách bảo mật</Link>.
+              <div>
+                <Label htmlFor="username" className="text-[#5A1E1E]">
+                  Tên người dùng
                 </Label>
+                <Input
+                  id="username"
+                  type="text"
+                  placeholder="Tên của bạn"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="border-[#d9b38c] focus:ring-[#B22222] focus:border-[#B22222]"
+                />
               </div>
 
-              <Button type="submit" className="w-full py-3 gradient-highlands text-primary-foreground text-md" disabled={isLoading || !agreedToTerms}>
-                {isLoading ? 'Đang xử lý...' : <><UserPlus className="w-5 h-5 mr-2" /> Đăng Ký</>}
+              <div>
+                <Label htmlFor="email" className="text-[#5A1E1E]">
+                  Email
+                </Label>
+                <div className="relative">
+                  <Mail className="absolute w-4 h-4 -translate-y-1/2 left-3 top-1/2 text-[#7B241C]" />
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="email@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="pl-10 border-[#d9b38c] focus:ring-[#B22222] focus:border-[#B22222]"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Label htmlFor="password" className="text-[#5A1E1E]">
+                  Mật khẩu
+                </Label>
+                <div className="relative">
+                  <KeyRound className="absolute w-4 h-4 -translate-y-1/2 left-3 top-1/2 text-[#7B241C]" />
+                  <Input
+                    id="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="pl-10 pr-10 border-[#d9b38c] focus:ring-[#B22222] focus:border-[#B22222]"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <Label htmlFor="confirmPassword" className="text-[#5A1E1E]">
+                  Xác nhận mật khẩu
+                </Label>
+                <div className="relative">
+                  <KeyRound className="absolute w-4 h-4 -translate-y-1/2 left-3 top-1/2 text-[#7B241C]" />
+                  <Input
+                    id="confirmPassword"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Nhập lại mật khẩu"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    className="pl-10 pr-10 border-[#d9b38c] focus:ring-[#B22222] focus:border-[#B22222]"
+                  />
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="icon"
+                    className="absolute w-8 h-8 -translate-y-1/2 right-1 top-1/2 text-[#7B241C]"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="w-4 h-4" />
+                    ) : (
+                      <Eye className="w-4 h-4" />
+                    )}
+                  </Button>
+                </div>
+              </div>
+
+              <Button
+                type="submit"
+                disabled={loading}
+                className="w-full py-3 text-white text-md font-semibold bg-[#B22222] hover:bg-[#D32F2F] transition-all shadow-md hover:shadow-lg"
+              >
+                {loading ? (
+                  "Đang xử lý..."
+                ) : (
+                  <>
+                    <UserPlus className="w-5 h-5 mr-2" />
+                    Đăng Ký
+                  </>
+                )}
               </Button>
             </form>
           </CardContent>
 
-          <CardFooter className="p-6 text-sm text-center border-t text-muted-foreground">
-            Đã có tài khoản? <Link to="/login" className="ml-1 font-semibold text-primary hover:underline">Đăng nhập ngay</Link>
+          <CardFooter className="p-6 text-sm text-center text-[#5A1E1E] border-t border-[#d9b38c]/30">
+            Đã có tài khoản?
+            <Link
+              to="/login"
+              className="ml-1 font-semibold text-[#B22222] hover:text-[#D32F2F]"
+            >
+              Đăng nhập ngay
+            </Link>
           </CardFooter>
         </Card>
       </motion.div>
     </div>
   );
-};
-
-export default RegisterPage;
+}

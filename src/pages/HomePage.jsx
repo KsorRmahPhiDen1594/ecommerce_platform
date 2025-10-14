@@ -231,7 +231,7 @@ const HomePage = () => {
 
       {/* Flash Sale */}
       <Card className="border-red-400 shadow-lg">
-        <CardHeader className="p-4 text-white rounded-t-lg bg-gradient-to-r from-red-600 to-orange-600 md:p-5">
+        <CardHeader className="p-4 text-white rounded-t-lg gradient-highlands md:p-5">
           <CardTitle className="flex items-center justify-between text-xl md:text-2xl">
             <div className="flex items-center">
               <Zap className="w-6 h-6 mr-2 md:h-7 md:w-7 animate-pulse" /> Flash
@@ -240,6 +240,7 @@ const HomePage = () => {
             <CountdownTimer targetDate={flashSaleEndDate} />
           </CardTitle>
         </CardHeader>
+
         <CardContent className="grid grid-cols-2 gap-3 p-3 md:p-4 sm:grid-cols-2 md:grid-cols-4 md:gap-4">
           {loading ? (
             <p className="col-span-4 text-center text-gray-500">
