@@ -8,32 +8,30 @@ const ProtectedRoute = ({ children, adminOnly = false }) => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen text-primary text-xl">
+      <div className='flex justify-center items-center h-screen text-primary text-xl'>
         Đang tải...
       </div>
     );
   }
 
   if (!currentUser) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to='/login' state={{ from: location }} replace />;
   }
 
   // ✅ Kiểm tra role đúng cách
   const roles = currentUser.roles?.map((r) =>
-    typeof r === "string" ? r.toLowerCase() : r.name?.toLowerCase()
+    typeof r === 'string' ? r.toLowerCase() : r.name?.toLowerCase(),
   );
 
   const isAdmin = roles?.some((r) =>
-    ["admin", "superadmin", "role_admin", "role_superadmin"].includes(r.toLowerCase())
+    ['admin', 'superadmin', 'role_admin', 'role_superadmin'].includes(r.toLowerCase()),
   );
 
   if (adminOnly && !isAdmin) {
-    return <Navigate to="/" replace />;
+    return <Navigate to='/' replace />;
   }
 
-
-  console.log("✅ currentUser:", currentUser);
-
+  console.log('✅ currentUser:', currentUser);
 
   return children;
 };
