@@ -144,22 +144,18 @@ const CareersPage = () => {
       </section>
 
       {/* Form ứng tuyển */}
-      <section className='max-w-3xl px-6 py-16 mx-auto'>
-        <motion.form
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className='bg-white rounded-2xl shadow-md border border-[#f0d5c8] p-8 md:p-10 space-y-6'
-        >
-          <div className='text-center'>
-            <h2 className='text-2xl font-bold text-[#7b1e1e] mb-4'>Gửi hồ sơ ứng tuyển</h2>
+      <section className='max-w-5xl px-6 py-20 mx-auto'>
+        {/* Tiêu đề và mô tả */}
+        <div className='mb-10 text-center'>
+          <h2 className='text-3xl font-bold text-[#7b1e1e] mb-4'>Gửi hồ sơ ứng tuyển</h2>
+          <p className='max-w-2xl mx-auto text-gray-700'>
+            Bạn yêu thích không khí của Highlands? Hãy để lại thông tin của bạn, chúng tôi sẽ liên
+            hệ ngay khi có vị trí phù hợp!
+          </p>
+        </div>
 
-            <p className='max-w-2xl mx-auto mb-8 text-gray-700'>
-              Bạn yêu thích không khí của Highlands? Hãy để lại thông tin của bạn, chúng tôi sẽ liên
-              hệ ngay khi có vị trí phù hợp!
-            </p>
-          </div>
+        {/* Form không có khung card */}
+        <form className='max-w-3xl mx-auto space-y-6'>
           <input
             type='text'
             placeholder='Nhập họ và tên của bạn'
@@ -191,7 +187,13 @@ const CareersPage = () => {
           >
             Gửi hồ sơ
           </motion.button>
-        </motion.form>
+        </form>
+
+        <div className='mt-12 text-center'>
+          <p className='text-sm italic text-gray-500'>
+            Highlands Coffee rất mong được đồng hành cùng bạn trong hành trình nghề nghiệp!
+          </p>
+        </div>
       </section>
     </div>
   );

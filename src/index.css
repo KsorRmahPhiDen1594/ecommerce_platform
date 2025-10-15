@@ -78,3 +78,12 @@ body {
   background: rgba(30, 30, 40, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+/* Ẩn thanh cuộn ngang cho menu trên mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE, Edge */
+  scrollbar-width: none; /* Firefox */
+}
