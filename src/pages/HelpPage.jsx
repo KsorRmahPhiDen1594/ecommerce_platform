@@ -92,7 +92,7 @@ const HelpPage = () => {
             </p>
           </div>
           <img
-            src='https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=60'
+          src='https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=60'
             alt='Highlands Coffee'
             className='rounded-xl'
           />
